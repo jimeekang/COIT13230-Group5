@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Based Application ElecSpectra</title>
+
+    <!-- - custom css link-->
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/cart-style.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </head>
+
+  <body>
+    <header id="header"></header>
+
+    <nav id="navbar" class="desktop-navigation-menu"></nav>
+
+    <div class="shopping_list">
+      <div class="container">
+        <h2>Shopping List</h2>
+
+        <button class="cart-all_delete-btn">Clear Cart Items</button>
+
+        <!--Shopping List -->
+        <div class="shopping-table">
+          <table>
+            <tr>
+              <th>Num</th>
+              <th>Product</th>
+              <th>Unit Price</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+
+            <tr>
+              <td>1</td>
+              <td>Iphone 15 (256GB)</td>
+              <td>$1500</td>
+              <td>1</td>
+              <td>$1500</td>
+              <td><button class="item-delete-btn">Delete</button></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Iphone 15 (256GB)</td>
+              <td>$1500</td>
+              <td>1</td>
+              <td>$1500</td>
+              <td><button class="item-delete-btn">Delete</button></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Iphone 15 (256GB)</td>
+              <td>$1500</td>
+              <td>1</td>
+              <td>$1500</td>
+              <td><button class="item-delete-btn">Delete</button></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="shopping-inform">
+          <div class="coupon">
+            <h2>Coupon</h2>
+            <div class="coupon-container">
+              <input type="text" class="coupon-input" />
+              <button class="coupon-btn">submit</button>
+            </div>
+          </div>
+          <div class="summary">
+            <h2>Summary</h2>
+            <p>Subtotal: <span>$1500</span></p>
+            <p>Shipping Cost: <span>Free</span></p>
+            <p>Total: <span>$1500</span></p>
+            <div class="summary-btn">
+              <button class="continue-btn">Continue Shopping</button>
+              <button class="checkout-btn">Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer"></footer>
+
+    <!-- ion icon link -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
