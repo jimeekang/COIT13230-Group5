@@ -17,7 +17,6 @@ Responsive Design: User-friendly interface accessible across various devices.
 Technologies Used
 
 Frontend:
-React.js
 HTML5, CSS3, JavaScript
 Library:Jquery
 
