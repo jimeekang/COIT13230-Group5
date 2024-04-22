@@ -72,18 +72,20 @@
           <div></div>
           <div class="inform-right">
             <div class="coupon">
-              <h2>Coupon</h2>
+              <h3>Coupon</h3>
               <div class="coupon-container">
                 <input type="text" class="coupon-input" />
                 <button class="coupon-btn">submit</button>
               </div>
             </div>
+
             <div class="summary">
-              <h2>Summary</h2>
+              <h3>Summary</h3>
               <p>Subtotal: <span>$1500</span></p>
               <p>Shipping Cost: <span>Free</span></p>
               <p>Total: <span>$1500</span></p>
               <div class="summary-btn">
+                <button class="cancel-btn">Cancel</button>
                 <button class="continue-btn">Continue Shopping</button>
                 <button class="checkout-btn">Checkout</button>
               </div>
@@ -118,5 +120,21 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      const checkoutBtn = document.querySelector(".checkout-btn");
+      $(document).ready(function () {
+        $(checkoutBtn).click(function () {
+          location.href = "shipping.html";
+        });
+      });
+
+      const cancelBtn = document.querySelector(".cancel-btn");
+      $(document).ready(function () {
+        $(cancelBtn).click(function () {
+          location.href = "index.html";
+        });
+      });
+    </script>
   </body>
 </html>
