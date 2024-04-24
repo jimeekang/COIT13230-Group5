@@ -40,32 +40,7 @@
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Iphone 15 (256GB)</td>
-              <td>$1500</td>
-              <td>1</td>
-              <td>$1500</td>
-              <td><button class="item-delete-btn">Delete</button></td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Iphone 15 (256GB)</td>
-              <td>$1500</td>
-              <td>1</td>
-              <td>$1500</td>
-              <td><button class="item-delete-btn">Delete</button></td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Iphone 15 (256GB)</td>
-              <td>$1500</td>
-              <td>1</td>
-              <td>$1500</td>
-              <td><button class="item-delete-btn">Delete</button></td>
-            </tr>
-          </tbody>
+          <tbody class="table-row"></tbody>
         </table>
 
         <div class="shopping-inform">
@@ -81,7 +56,7 @@
 
             <div class="summary">
               <h3>Summary</h3>
-              <p>Subtotal: <span>$1500</span></p>
+              <p>Subtotal:<span>$1500</span></p>
               <p>Shipping Cost: <span>Free</span></p>
               <p>Total: <span>$1500</span></p>
               <div class="summary-btn">
@@ -108,7 +83,8 @@
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
 
-    <script src="./assets/js/main.js"></script>
+    <script type="module" src="./assets/js/cart.js"></script>
+    <script type="module" src="./assets/js/script.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -120,21 +96,5 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
-
-    <script>
-      const checkoutBtn = document.querySelector(".checkout-btn");
-      $(document).ready(function () {
-        $(checkoutBtn).click(function () {
-          location.href = "shipping.html";
-        });
-      });
-
-      const cancelBtn = document.querySelector(".cancel-btn");
-      $(document).ready(function () {
-        $(cancelBtn).click(function () {
-          location.href = "index.html";
-        });
-      });
-    </script>
   </body>
 </html>

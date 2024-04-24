@@ -1,7 +1,3 @@
-.container {
-  padding: 0 15px;
-}
-
 .cart-all_delete-btn {
   margin: var(--margin-top) 0;
   padding: 7px 14px;
@@ -51,7 +47,7 @@ table tr th:last-child {
   width: 100%;
 }
 
-.shopping-inform h2 {
+.shopping-inform h3 {
   margin-bottom: 12px;
 }
 
@@ -104,13 +100,14 @@ table tr th:last-child {
 }
 .summary-btn {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   margin-top: 24px;
 }
 
 .continue-btn,
-.checkout-btn {
+.checkout-btn,
+.cancel-btn {
   padding: 7px 10px;
   background-color: var(--dark-blue);
   color: var(--white);
@@ -121,7 +118,8 @@ table tr th:last-child {
 }
 
 .continue-btn:hover,
-.checkout-btn:hover {
+.checkout-btn:hover,
+.cancel-btn:hover {
   background: var(--orange);
   transform: scale(1.05);
 }
