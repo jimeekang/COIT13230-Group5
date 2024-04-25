@@ -23,16 +23,55 @@
     </div>
 
     <div class="header-user-actions">
+      <!-- <a href="./userlogin.html" class="user-login">Login</a> -->
       <p class="user-profile">Hello, <span class="user-id">User</span></p>
 
       <a class="action-btn" type="button" href="#">
         <ion-icon name="person-outline"></ion-icon>
       </a>
 
-      <a class="action-btn" type="button" href="/cart.html">
+      <a class="action-btn" type="button" href="cart.html">
         <ion-icon name="bag-handle-outline"></ion-icon>
         <span class="count">0</span>
       </a>
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const userLoginElement = document.querySelector(".user-login");
+      const userProfileElement = document.querySelector(".user-profile");
+      const userIdElement = document.querySelector(".user-id");
+
+      // Function to check login status (replace with your actual logic)
+      function checkLoggedInStatus() {
+        // Check for user ID in sessionStorage (replace with your method)
+        if (sessionStorage.getItem("userID")) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      const isLoggedIn = checkLoggedInStatus();
+
+      // Update login status based on the check
+      if (isLoggedIn) {
+        userLoginElement.style.display = "none";
+        userProfileElement.style.display = "block";
+        userIdElement.textContent = getLoggedInUserId();
+      } else {
+        userLoginElement.style.display = "block";
+        userIdElement.style.display = "none";
+      }
+    });
+
+    function getLoggedInUserId() {
+      if (sessionStorage.getItem("userId")) {
+        return sessionStorage.getItem("userId");
+      } else {
+        return null;
+      }
+    }
+  </script>
 </div>
