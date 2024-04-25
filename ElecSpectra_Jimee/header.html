@@ -23,7 +23,7 @@
     </div>
 
     <div class="header-user-actions">
-      <!-- <a href="./userlogin.html" class="user-login">Login</a> -->
+      <a href="./userlogin.html" class="user-login">Login</a>
       <p class="user-profile">Hello, <span class="user-id">User</span></p>
 
       <a class="action-btn" type="button" href="#">
@@ -34,41 +34,44 @@
         <ion-icon name="bag-handle-outline"></ion-icon>
         <span class="count">0</span>
       </a>
+
+      <a href="./index.html" class="user-logout">Logout</a>
     </div>
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const userLoginElement = document.querySelector(".user-login");
-      const userProfileElement = document.querySelector(".user-profile");
-      const userIdElement = document.querySelector(".user-id");
+    const userLoginElement = document.querySelector(".user-login");
+    const userProfileElement = document.querySelector(".user-profile");
+    const userIdElement = document.querySelector(".user-id");
+    const userLogoutElement = document.querySelector(".user-logout");
 
-      // Function to check login status (replace with your actual logic)
-      function checkLoggedInStatus() {
-        // Check for user ID in sessionStorage (replace with your method)
-        if (sessionStorage.getItem("userID")) {
-          return true;
-        } else {
-          return false;
-        }
-      }
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
 
-      const isLoggedIn = checkLoggedInStatus();
+    // Display logging user First name
+    if (isLoggedIn) {
+      userLoginElement.style.display = "none"; // Hide the login link
+      const firstName = getLoggedInUserFirstName(); // Get first name
+      userIdElement.textContent = firstName; // Update user ID with first name
+    } else {
+      userProfileElement.style.display = "none";
+      userLogoutElement.style.display = "none";
+    }
 
-      // Update login status based on the check
-      if (isLoggedIn) {
-        userLoginElement.style.display = "none";
-        userProfileElement.style.display = "block";
-        userIdElement.textContent = getLoggedInUserId();
-      } else {
-        userLoginElement.style.display = "block";
-        userIdElement.style.display = "none";
-      }
+    // Log out
+    userLogoutElement.addEventListener("click", () => {
+      sessionStorage.removeItem("isLoggedIn"); // Clear login status
+      sessionStorage.removeItem("userData"); // Clear user data
+
+      // Optionally redirect to the login page or other relevant page
+      window.location.href = "./userlogin.html";
     });
 
-    function getLoggedInUserId() {
-      if (sessionStorage.getItem("userId")) {
-        return sessionStorage.getItem("userId");
+    function getLoggedInUserFirstName() {
+      // Retrieve user data from sessionStorage or another mechanism
+      const userData = JSON.parse(sessionStorage.getItem("userData"));
+
+      if (userData && userData.firstName) {
+        return userData.firstName;
       } else {
         return null;
       }
