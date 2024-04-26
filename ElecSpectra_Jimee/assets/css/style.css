@@ -202,6 +202,33 @@ body {
 }
 
 /*-----------------------------------*\
+  #Admin 
+\*-----------------------------------*/
+.manage-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.add-product-btn,
+.manage-product-btn {
+  background: var(--dark-blue);
+  padding: 8px 15px;
+  color: var(--white);
+  font-weight: var(--fs-9);
+  font-weight: var(--weight-700);
+  text-transform: uppercase;
+  border-radius: var(--border-radius-md);
+  margin: 15px 0 15px 0;
+  transition: var(--transition-timing);
+}
+
+.add-product-btn:hover,
+.manage-product-btn:hover {
+  background: var(--orange);
+  color: var(--white);
+}
+
+/*-----------------------------------*\
   #BANNER
 \*-----------------------------------*/
 .carousel-item img {

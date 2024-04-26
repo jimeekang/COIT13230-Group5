@@ -1,33 +1,39 @@
 const signupForm = document.getElementById("signupForm");
+const cancelBtn = document.querySelector(".cancel-btn");
 
 signupForm.addEventListener("submit", event => {
   event.preventDefault(); // Prevent default form submission
 
   // Get form data
   const formData = new FormData(signupForm);
+  let isAllRequiredFieldsFilled = true;
 
-  // Log data to console
-  console.log("Form Data:");
-  for (const [key, value] of formData.entries()) {
-    console.log(key, ":", value);
+  // Store user data in session storage
+  if (isAllRequiredFieldsFilled) {
+    const user = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+      confirmPassword: formData.get("confirmPassword"),
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      address: formData.get("address"),
+      mobileNumber: formData.get("mobileNumber"),
+      registrationDate: new Date(),
+      role: "customer", // Assuming customer role by default
+    };
+
+    let users = JSON.parse(sessionStorage.getItem("userData")) || [];
+    users.push(user);
+    sessionStorage.setItem("userData", JSON.stringify(users));
+    location.href = "userLogin.html";
+    alert("Create Account successful!");
+  } else {
+    // Handle validation errors (display error messages, etc.)
+    console.error("Form validation failed!");
+    alert("orm validation failed! Please check your fields.");
   }
+});
 
-  // Send data to server (using Fetch API)
-  fetch(signupForm.action, {
-    method: "POST",
-    body: formData,
-  })
-    .then(response => {
-      if (!response.ok) {
-        console.error("Error sending data:", response.statusText);
-        // Handle error (e.g., display error message to user)
-      } else {
-        console.log("Data sent successfully!");
-        // Handle successful response (e.g., redirect to confirmation page)
-      }
-    })
-    .catch(error => {
-      console.error("Error sending data:", error);
-      // Handle network or other errors
-    });
+cancelBtn.addEventListener("click", () => {
+  location.href = "index.html";
 });

@@ -13,16 +13,25 @@ $(document).ready(function () {
   $("#footer").load("footer.html");
 });
 
-const checkoutBtn = document.querySelector(".checkout-btn");
+/******* Admin main page direction *******/
+const addNewProductBtn = document.querySelector(".add-product-btn");
 $(document).ready(function () {
-  $(checkoutBtn).click(function () {
-    location.href = "shipping.html";
+  $(addNewProductBtn).click(function () {
+    location.href = "adminAddProduct.html";
   });
 });
 
-const cancelBtn = document.querySelector(".cancel-btn");
+const managePRoduct = document.querySelector(".manage-product-btn");
 $(document).ready(function () {
-  $(cancelBtn).click(function () {
-    location.href = "index.html";
+  $(managePRoduct).click(function () {
+    location.href = "adminManageProduct.html";
+  });
+});
+
+// move to product detail page
+const showcase = document.querySelectorAll(".showcase");
+$(document).ready(function () {
+  $(showcase).click(function () {
+    location.href = "productDetail.html";
   });
 });

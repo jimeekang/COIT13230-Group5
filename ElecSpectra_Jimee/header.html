@@ -26,7 +26,7 @@
       <a href="./userlogin.html" class="user-login">Login</a>
       <p class="user-profile">Hello, <span class="user-id">User</span></p>
 
-      <a class="action-btn" type="button" href="#">
+      <a class="action-btn" type="button" href="/userProfile.html">
         <ion-icon name="person-outline"></ion-icon>
       </a>
 
@@ -44,31 +44,42 @@
     const userProfileElement = document.querySelector(".user-profile");
     const userIdElement = document.querySelector(".user-id");
     const userLogoutElement = document.querySelector(".user-logout");
+    const cartCount = document.querySelector(".count");
 
-    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    let isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")).length;
 
-    // Display logging user First name
-    if (isLoggedIn) {
-      userLoginElement.style.display = "none"; // Hide the login link
-      const firstName = getLoggedInUserFirstName(); // Get first name
-      userIdElement.textContent = firstName; // Update user ID with first name
-    } else {
-      userProfileElement.style.display = "none";
-      userLogoutElement.style.display = "none";
+    function updateLoginState() {
+      // Check login status
+      isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+      // Update UI based on login status
+      userLoginElement.style.display = isLoggedIn ? "none" : "block";
+      userProfileElement.style.display = isLoggedIn ? "block" : "none";
+      userLogoutElement.style.display = isLoggedIn ? "block" : "none";
+
+      if (isLoggedIn) {
+        const firstName = getLoggedInUserFirstName();
+        userIdElement.textContent = firstName;
+      } else {
+        userIdElement.textContent = ""; // Clear user ID when not logged in
+      }
     }
+
+    // Call updateLoginState on page load
+    updateLoginState();
 
     // Log out
     userLogoutElement.addEventListener("click", () => {
-      sessionStorage.removeItem("isLoggedIn"); // Clear login status
-      sessionStorage.removeItem("userData"); // Clear user data
-
-      // Optionally redirect to the login page or other relevant page
-      window.location.href = "./userlogin.html";
+      sessionStorage.setItem("isLoggedIn", false);
+      window.location.href = "./userLogin.html";
+      updateLoginState(); // Update UI after logout
     });
 
+    // Cart count number
+    cartCount.innerHTML = cartItems;
+
     function getLoggedInUserFirstName() {
-      // Retrieve user data from sessionStorage or another mechanism
-      const userData = JSON.parse(sessionStorage.getItem("userData"));
+      const userData = JSON.parse(sessionStorage.getItem("userData")) || [];
 
       if (userData && userData.firstName) {
         return userData.firstName;

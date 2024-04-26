@@ -1,35 +1,6 @@
-export const products = [
-  {
-    id: 1,
-    name: "Iphone15",
-    price: 1500,
-    quantity: 1,
-    subtotalPrice: function () {
-      return this.price * this.quantity;
-    },
-  },
-  {
-    id: 2,
-    name: "Iphone14",
-    price: 1400,
-    quantity: 1,
-    subtotalPrice: function () {
-      return this.price * this.quantity;
-    },
-  },
-  {
-    id: 3,
-    name: "Iphone13",
-    price: 1300,
-    quantity: 2,
-    subtotalPrice: function () {
-      return this.price * this.quantity;
-    },
-  },
-];
+const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-/*******Cart*******/
-const cartItem = document.querySelector(".table-row");
+const cartItemRow = document.querySelector(".table-row");
 const clearAllBtn = document.querySelector(".cart-all_delete-btn");
 
 const subtotalSpan = document.querySelectorAll(".summary p span")[0];
@@ -41,43 +12,44 @@ let totalPrice = 0;
 let deliverCost = 20;
 
 const checkoutBtn = document.querySelector(".checkout-btn");
+const cancelBtn = document.querySelector(".cancel-btn");
 
 //Product Item table
 function cartProductList(products) {
   products.forEach(p => {
     cartItemContent += ` <tr>
     <th scope="row" >${p.id}</th>
-    <td>${p.name}</td>
+    <td>${p.productName}</td>
+    <td>${p.model}</td>
     <td>$${p.price}</td>
     <td>${p.quantity}</td>
-    <td>${p.subtotalPrice()}</td>
-    <td><button class="item-delete-btn" data-product-id="${
-      p.id
-    }">Delete</button></td>
+    <td>${p.subtotalPrice}</td>
+    <td><button class="item-delete-btn" data-product-id="${p.id}">Delete</button></td>
     </tr>`;
   });
   products.length > 0
-    ? (cartItem.innerHTML = cartItemContent)
+    ? (cartItemRow.innerHTML = cartItemContent)
     : console.log("error");
 }
 
-cartProductList(products);
+cartProductList(cartItems);
 
 // All delete data
 function deleteAllProduct(products) {
   if (confirm("Are you sure you want to delete all cart items?")) {
     products.length = 0;
-    cartItem.innerHTML = "";
+    cartItemRow.innerHTML = "";
     totalPrice = 0;
     subtotalSpan.textContent = `$${totalPrice}`;
     updateTotalAfterDiscount(totalPrice);
+    localStorage.removeItem("cartItems");
   } else {
     // User canceled deletion
   }
 }
 
 clearAllBtn.addEventListener("click", () => {
-  deleteAllProduct(products);
+  deleteAllProduct(cartItems);
 });
 
 // Delete one product
@@ -90,11 +62,15 @@ function deleteOneProduct(event, products) {
 
     if (productIndex !== -1) {
       const removedProduct = products.splice(productIndex, 1)[0];
+      console.log(removedProduct);
 
-      totalPrice -= removedProduct.subtotalPrice();
+      totalPrice -= removedProduct.subtotalPrice;
 
       const tableRow = clickedButton.closest("tr");
-      cartItem.removeChild(tableRow);
+      cartItemRow.removeChild(tableRow);
+
+      // Update localStorage with remaining items
+      localStorage.setItem("cartItems", JSON.stringify(products));
 
       // Update subtotal and total in UI
       subtotalSpan.textContent = `$${totalPrice}`;
@@ -103,13 +79,13 @@ function deleteOneProduct(event, products) {
   }
 }
 
-cartItem.addEventListener("click", event => {
-  deleteOneProduct(event, products);
+cartItemRow.addEventListener("click", event => {
+  deleteOneProduct(event, cartItems);
 });
 
 // Get final total cost
-products.forEach(p => {
-  const subtotalPrice = p.subtotalPrice();
+cartItems.forEach(p => {
+  const subtotalPrice = p.subtotalPrice;
   totalPrice += subtotalPrice;
 });
 
@@ -122,9 +98,10 @@ function updateTotalAfterDiscount(currentTotalPrice) {
   totalCost.textContent = `$${currentTotalPrice}`;
 }
 
+// check out to payment
 checkoutBtn.addEventListener("click", () => {
   const cartData = {
-    products: products, // Array of product objects
+    products: cartItems, // Array of product objects
     subtotal: totalPrice,
     shippingCost: totalPrice > 100 ? 0 : deliverCost,
     totalCost: totalPrice + (totalPrice > 100 ? 0 : deliverCost),
@@ -133,11 +110,16 @@ checkoutBtn.addEventListener("click", () => {
   try {
     // Store cart data in localStorage
     localStorage.setItem("cartData", JSON.stringify(cartData));
-
-    // Redirect to shipping.html only after successful storage
     window.location.href = "shipping.html";
   } catch (error) {
+    // Handle storage error
     console.error("Error saving cart data to localStorage:", error);
-    // Handle storage error gracefully, e.g., display an error message to the user
+    alert("Error saving cart data to localStorage:");
   }
+});
+
+$(document).ready(function () {
+  $(cancelBtn).click(function () {
+    location.href = "index.html";
+  });
 });

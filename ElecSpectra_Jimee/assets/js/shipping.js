@@ -11,6 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     totalCostSpan.textContent = `$${cartData.totalCost}`;
   } else {
     // Handle case where no cart data is found (empty cart)
-    console.log("No cart data found");
+    alert("No cart data found");
   }
 });
