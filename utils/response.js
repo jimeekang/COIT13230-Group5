@@ -1,0 +1,38 @@
+const JWT = require('jsonwebtoken');
+
+exports.sendResponse = (statusCode, statusMessage, Data, res) => {
+  res.status(statusCode).send({
+    status: statusMessage,
+    data: {
+      data: Data,
+    },
+  });
+};
+
+exports.sendError = (statusCode, statusMessage, message, res) => {
+  res.status(statusCode).json({
+    status: statusMessage,
+    message: message,
+  });
+};
+
+//TODO -- For Generate the Login token
+
+exports.createLoggedInToken = async (id) => {
+  const token = await JWT.sign({ _id: id }, process.env.SECRET_KEY, {
+    expiresIn: process.env.EXPIRE_IN,
+  });
+
+  return token;
+};
+
+exports.filterObj = function (data, ...allowed) {
+  const filteredObj = {};
+  Object.keys(data).forEach((el) => {
+    if (allowed.includes(el)) {
+      filteredObj[el] = data[el];
+    }
+  });
+  console.log(filteredObj);
+  return filteredObj;
+};
