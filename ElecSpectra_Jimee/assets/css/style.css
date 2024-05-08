@@ -210,7 +210,8 @@ body {
   align-items: center;
 }
 .add-product-btn,
-.manage-product-btn {
+.manage-product-btn,
+.manage-review-btn {
   background: var(--dark-blue);
   padding: 8px 15px;
   color: var(--white);

@@ -47,7 +47,7 @@
     const cartCount = document.querySelector(".count");
 
     let isLoggedIn = sessionStorage.getItem("isLoggedIn");
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")).length;
+    //let cartItems = JSON.parse(localStorage.getItem("cartItems")).length;
 
     function updateLoginState() {
       // Check login status
@@ -76,7 +76,7 @@
     });
 
     // Cart count number
-    cartCount.innerHTML = cartItems;
+    //cartCount.innerHTML = cartItems !== null ? cartItems : 0;
 
     function getLoggedInUserFirstName() {
       const userData = JSON.parse(sessionStorage.getItem("userData")) || [];

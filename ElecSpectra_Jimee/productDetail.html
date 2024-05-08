@@ -38,19 +38,18 @@
           <div class="select-options">
             <label for="model">Select Model:</label>
             <select name="model" id="model">
-              <option name="model" value="256GB">256GB</option>
-              <option name="model" value="512GB">512GB</option>
-              <option name="model" value="1TB">1TB</option>
-              <option name="model" value="2TB">2TB</option>
+              <option value="256GB">256GB</option>
+              <option value="512GB">512GB</option>
+              <option value="1TB">1TB</option>
+              <option value="2TB">2TB</option>
             </select>
-
             <label for="qty">Select Quantity:</label>
-            <select id="qty">
-              <option name="qty" value="0">0</option>
-              <option name="qty" value="1">1</option>
-              <option name="qty" value="2">2</option>
-              <option name="qty" value="3">3</option>
-              <option name="qty" value="4">4</option>
+            <select name="qty" id="qty">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
             </select>
           </div>
           <button class="add-to-cart">Add to Cart</button>
@@ -64,7 +63,6 @@
         alt="Product Description Image"
       />
       <p>This is our product description</p>
-      <!-- Add more product description here -->
     </div>
 
     <section class="product-review">
@@ -85,7 +83,7 @@
       <button id="writeReviewBtn">Write a Review</button>
     </section>
 
-    <div id="writeReviewSection" style="display: none">
+    <div id="writeReviewSection" style="display: none" class="container">
       <h2>Write Review</h2>
       <form id="reviewForm">
         <div class="form-group">
@@ -122,6 +120,7 @@
     <footer id="footer"></footer>
 
     <!-- ionicon link -->
+
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
@@ -132,8 +131,8 @@
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
 
+    <script type="module" src="./assets/js/productdetail.js"></script>
     <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/addCart.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

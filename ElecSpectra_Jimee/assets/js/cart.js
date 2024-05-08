@@ -79,6 +79,23 @@ function deleteOneProduct(event, products) {
   }
 }
 
+/**
+function handleDelete(productId) {
+
+  const indexToDelete = products.findIndex(
+    product => product.id === parseInt(productId)
+  );
+
+document.querySelectorAll(".delete-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    const productId = button
+      .closest("tr")
+      .querySelector("td:first-child").innerText;
+    handleDelete(productId);
+  });
+});
+ */
+
 cartItemRow.addEventListener("click", event => {
   deleteOneProduct(event, cartItems);
 });
