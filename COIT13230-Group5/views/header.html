@@ -45,9 +45,8 @@
     //console.log(userName);
 
     if (userName) {
-      // 토큰이 존재하면 로그인된 상태로 간주
       $('.user-name').show();
-      $('.user-name').text(userName); // 로딩 메시지 표시 (선택적)
+      $('.user-name').text(userName);
       $('.user-login').hide();
       $('.user-profile').show();
       $('.user-logout').show();
@@ -63,15 +62,15 @@
     // log out
     $('.user-logout').click(function () {
       $.ajax({
-        url: '/user/logout', // 로그아웃 API 경로
+        url: '/user/logout',
         method: 'POST',
         success: function (response) {
           console.log(response);
           if (response.statusCode === 200) {
             // 로그아웃 성공
-            localStorage.removeItem('userName'); // 로컬 스토리지에서 사용자 이름 삭제
+            localStorage.removeItem('userName');
             document.cookie = '';
-            window.location.href = '/main'; // 로그인 페이지로 이동
+            window.location.href = '/main';
           } else {
             console.error('Logout failed:', response.error);
           }
