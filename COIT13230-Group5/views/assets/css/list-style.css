@@ -1,0 +1,19 @@
+.list-category {
+  width: 100%;
+  text-align: right;
+}
+
+select {
+  text-align: center;
+  font-size: var(--fs-10);
+  padding: 3px 6px;
+  background-color: var(--ffffff);
+  border: 1px solid var(--sonic-silver);
+  border-radius: var(--border-radius-sm);
+  color: var(--eerie-black);
+  cursor: pointer;
+}
+
+.product-main {
+  margin: 32px 0 30px 0;
+}

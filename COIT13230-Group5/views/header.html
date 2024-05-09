@@ -1,0 +1,86 @@
+<div class="header-main">
+  <div class="container">
+    <a href="index.html" class="header-logo">
+      <img
+        src="./assets/images/logo/logo.png"
+        alt="logo"
+        width="90"
+        height="80"
+      />
+    </a>
+
+    <div class="header-search-container">
+      <input
+        type="search"
+        name="search"
+        class="search-field"
+        placeholder="Enter your Electronic product name !!"
+      />
+
+      <button class="search-btn">
+        <ion-icon name="search-outline"></ion-icon>
+      </button>
+    </div>
+
+    <div class="header-user-actions">
+      <a href="/loginPage" class="user-login">Login</a>
+
+      <p class="user-name"></p>
+
+      <a class="action-btn user-profile" type="button" href="/userProfile.html">
+        <ion-icon name="person-outline"></ion-icon>
+      </a>
+
+      <a class="action-btn user-cart" type="button" href="cart.html">
+        <ion-icon name="bag-handle-outline"></ion-icon>
+        <span class="count">0</span>
+      </a>
+
+      <a href="/logout" class="user-logout">Logout</a>
+    </div>
+  </div>
+  <!-- <script src="./assets/js/login.js"></script> -->
+  <script>
+    const userName = localStorage.getItem('userName');
+    //console.log(userName);
+
+    if (userName) {
+      // 토큰이 존재하면 로그인된 상태로 간주
+      $('.user-name').show();
+      $('.user-name').text(userName); // 로딩 메시지 표시 (선택적)
+      $('.user-login').hide();
+      $('.user-profile').show();
+      $('.user-logout').show();
+      $('.user-cart').show();
+    } else {
+      $('.user-name').text('');
+      $('.user-name').hide();
+      $('.user-profile').hide();
+      $('.user-logout').hide();
+      $('.user-login').show();
+    }
+
+    // log out
+    $('.user-logout').click(function () {
+      $.ajax({
+        url: '/user/logout', // 로그아웃 API 경로
+        method: 'POST',
+        success: function (response) {
+          console.log(response);
+          if (response.statusCode === 200) {
+            // 로그아웃 성공
+            localStorage.removeItem('userName'); // 로컬 스토리지에서 사용자 이름 삭제
+            document.cookie = '';
+            window.location.href = '/main'; // 로그인 페이지로 이동
+          } else {
+            console.error('Logout failed:', response.error);
+          }
+        },
+        error: function (error) {
+          console.error('AJAX error:', error);
+        },
+      });
+      window.location.href = '/main';
+    });
+  </script>
+</div>
