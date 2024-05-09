@@ -67,7 +67,7 @@
         success: function (response) {
           console.log(response);
           if (response.statusCode === 200) {
-            // 로그아웃 성공
+            
             localStorage.removeItem('userName');
             document.cookie = '';
             window.location.href = '/main';
