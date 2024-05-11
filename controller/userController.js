@@ -107,7 +107,8 @@ exports.getAllUsers = async (req, res, next) => {
 // TODO -- get one user
 exports.getUser = async (req, res, next) => {
   try {
-    const user = await userModel.findOne({ _id: req._id });
+    const id = req.params.id;
+    const user = await userModel.findOne({ _id: id });
 
     if (!user) {
       return next(new AppError('user not exists', 404));

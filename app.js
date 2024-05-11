@@ -3,6 +3,8 @@ require('dotenv').config({ path: './config.env' });
 const databaseConnection = require('./server');
 const userRouter = require('./routes/userRouter');
 const productRouter = require('./routes/productRouter');
+const reviewRouter = require('./routes/reviewRouter');
+const categoryRouter = require('./routes/categoryRoutes');
 const app = express();
 
 // Connect Apllication with database
@@ -13,6 +15,8 @@ app.use(express.json());
 // TODO -- All Router
 app.use('/user', userRouter);
 app.use('/product', productRouter);
+app.use('/review', reviewRouter);
+app.use('/category', categoryRouter);
 
 // Global Error handling middleware..
 app.use((err, req, res, next) => {
@@ -20,6 +24,13 @@ app.use((err, req, res, next) => {
     status: err.status,
     message: err.message,
     stack: err.stack,
+  });
+});
+
+app.all('*', (req, res, next) => {
+  res.status(404).json({
+    status: 'Failed',
+    message: 'Page not Found..',
   });
 });
 

@@ -1,11 +1,16 @@
 const express = require('express');
 const productController = require('../controller/productController');
+const authController = require('../controller/authController');
 
 const productRouter = express.Router();
 
 productRouter
   .route('/')
-  .post(productController.createProduct)
+  .post(
+    authController.protected,
+    authController.restrictTo('admin', 'manager'),
+    productController.createProduct
+  )
   .get(productController.getAllproducts)
   .delete(productController.deleteAllProducts);
 

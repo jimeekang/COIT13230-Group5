@@ -44,6 +44,7 @@ exports.createProduct = async (req, res, next) => {
 exports.getAllproducts = async (req, res, next) => {
   const queryObject = req.query;
 
+  console.log(queryObject);
   try {
     const features = new ApiFeatures(productModel.find(), queryObject)
       .filter()
@@ -81,7 +82,7 @@ exports.deleteAllProducts = async (req, res, next) => {
 exports.getProduct = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const product = await productModel.findById(id);
+    const product = await productModel.findById(id).populate('reviews');
 
     if (!product) {
       throw new AppError('product not found', 404);

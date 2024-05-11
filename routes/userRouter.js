@@ -38,4 +38,6 @@ userRouter
     userController.getAllUsers
   );
 
+userRouter.route('/:id').get(userController.getUser);
+
 module.exports = userRouter;
