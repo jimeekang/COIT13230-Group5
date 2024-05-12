@@ -1,0 +1,42 @@
+.manage-btn {
+  margin-top: 20px; /* Adjust top margin as needed */
+  border: 1px solid #ddd; /* Border color */
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #f9f9f9; /* Background color */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+
+  /* Flexbox styles for centering horizontally */
+  display: flex;
+  justify-content: center;
+}
+
+/* Styling for individual buttons within the container */
+.manage-btn button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff; /* Change the background color as needed */
+  color: #fff; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px; /* Adjust margin as needed */
+}
+
+/* Hover effect for buttons */
+.manage-btn button:hover {
+  background-color: #0056b3; /* Darker shade of the primary color */
+}
+
+/* Active/focus effect for buttons */
+.manage-btn button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Adjust box shadow color as needed */
+}
+
+/* Disabled state for buttons */
+.manage-btn button:disabled {
+  background-color: #ced4da; /* Adjust color for disabled state */
+  cursor: not-allowed;
+  opacity: 0.6; /* Adjust opacity for disabled state */
+}
