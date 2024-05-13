@@ -160,7 +160,7 @@
 }
 
 #writeReviewSection textarea,
-#writeReviewSection input[type="text"],
+#writeReviewSection input[type='text'],
 #writeReviewSection select {
   width: 100%;
   padding: 10px;
@@ -180,7 +180,7 @@
   cursor: pointer;
 }
 
-#writeReviewSection button[type="submit"] {
+#writeReviewSection button[type='submit'] {
   background-color: #007bff;
   color: #fff;
   margin-bottom: 4px;

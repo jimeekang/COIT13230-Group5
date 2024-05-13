@@ -1,8 +1,8 @@
 <div class="header-main">
   <div class="container">
-    <a href="index.html" class="header-logo">
+    <a href="/main" class="header-logo">
       <img
-        src="./assets/images/logo/logo.png"
+        src="/assets/images/logo/logo.png"
         alt="logo"
         width="90"
         height="80"
@@ -67,8 +67,8 @@
         success: function (response) {
           console.log(response);
           if (response.statusCode === 200) {
-            // 로그아웃 성공
             localStorage.removeItem('userName');
+            localStorage.removeItem('userRole');
             document.cookie = '';
             window.location.href = '/main';
           } else {

@@ -28,12 +28,21 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="email"],
-input[type="password"] {
+input[type='email'],
+input[type='password'] {
   width: 100%;
   padding: 10px;
   border: 1px solid var(--light-gray);
   border-radius: 5px;
+}
+
+.error-msg {
+  color: red;
+  display: none;
+}
+
+.visible {
+  display: block;
 }
 
 button.login-btn {

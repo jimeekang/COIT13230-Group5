@@ -4,6 +4,7 @@ $(document).ready(function () {
 
     const email = $('#email').val();
     const password = $('#password').val();
+
     $.ajax({
       url: '/user/login',
       method: 'POST',
@@ -37,12 +38,20 @@ $(document).ready(function () {
             console.error('Login token not found in cookie!');
           }
         } else {
-          // Login failed
-          console.error('Login failed:', response.error);
+          // Login failed .error-msg
+          let errorMessage = 'Login failed.';
+
+          if (response.statusCode === 404 || response.statusCode === 401) {
+            errorMessage = 'Invalid email or password.';
+          }
+          $('.error-msg').addClass('visible');
+          $('.error-msg').text(errorMessage);
         }
       },
       error: function (error) {
-        console.error('AJAX error:', error);
+        $('.error-msg').text(
+          'An error occurred during login. Please try again.'
+        );
       },
     });
   });

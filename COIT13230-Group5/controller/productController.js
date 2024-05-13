@@ -1,42 +1,83 @@
+const multer = require('multer');
+const path = require('path');
 const productModel = require('../model/productModel');
 const AppError = require('../utils/AppError');
 const ApiFeatures = require('../utils/apiFeatures');
 
-// TODO -- admin user can get all products
-exports.createProduct = async (req, res, next) => {
-  try {
-    const {
-      name,
-      description,
-      price,
-      brand,
-      category,
-      specifications,
-      image,
-      stock,
-      tag,
-    } = req.body;
-    console.log(specifications);
+// Multer configuration
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname);
+  },
+});
 
-    const product = await productModel.create({
-      name,
-      description,
-      price,
-      brand,
-      category,
-      specifications,
-      image,
-      stock,
-      tag,
-    });
+const upload = multer({ storage: storage }).single('image');
 
-    res.status(200).json({
-      status: 'success',
-      data: product,
-    });
-  } catch (err) {
-    return next(new AppError(err.message, 404));
-  }
+// TODO -- admin user can create a product
+exports.createProduct = (req, res, next) => {
+  upload(req, res, async (err) => {
+    if (err instanceof multer.MulterError) {
+      return next(new AppError('File upload error', 400));
+    } else if (err) {
+      return next(err);
+    }
+
+    try {
+      const {
+        name,
+        description,
+        price,
+        brand,
+        category,
+        display,
+        processor,
+        ram,
+        storage,
+        graphics,
+        battery,
+        stock,
+        tag,
+      } = req.body;
+
+      // Handle image if uploaded:
+      const image = req.file ? req.file.path : 'sss'; // Get the path of the uploaded image
+
+      const productData = {
+        ratingAverage: 4.7,
+        name,
+        description,
+        price,
+        brand,
+        category,
+        specifications: {
+          display,
+          processor,
+          ram,
+          storage,
+          graphics,
+          battery,
+          image: image,
+          stock: stock,
+          tag: tag,
+        },
+        image: image,
+        stock: stock,
+        tag: tag,
+      };
+
+      const product = await productModel.create(productData);
+      // res.status(200).json({
+      //   status: 'success',
+      //   data: product,
+      // });
+      res.redirect('/addProduct');
+    } catch (err) {
+      return next(new AppError(err.message, 404));
+    }
+  });
 };
 
 // TODO -- Get All products and Query Features includes (Sorting & Filtering & Pagination &  Limiting)
@@ -53,11 +94,13 @@ exports.getAllproducts = async (req, res, next) => {
 
     const tours = await features.query;
 
-    res.status(200).json({
-      status: 'success',
-      length: tours.length,
-      data: tours,
-    });
+    // res.status(200).json({
+    //   status: 'success',
+    //   length: tours.length,
+    //   data: tours,
+    // });
+
+    res.render('productList.html', { tours });
   } catch (err) {
     return next(new AppError(err.message, 404));
   }
@@ -82,17 +125,17 @@ exports.getProduct = async (req, res, next) => {
   const { id } = req.params;
   try {
     const product = await productModel.findById(id);
-
     if (!product) {
       throw new AppError('product not found', 404);
     }
 
-    res.status(200).json({
-      status: 'success',
-      data: {
-        data: product,
-      },
-    });
+    // res.status(200).json({
+    //   status: 'success',
+    //   data: {
+    //     data: product,
+    //   },
+    // });
+    res.render('productDetail.html', { product });
   } catch (err) {
     return next(new AppError(err.message, 404));
   }

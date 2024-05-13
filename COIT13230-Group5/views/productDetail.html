@@ -8,9 +8,10 @@
 
     <!-- - custom css link-->
 
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="./assets/css/product_detail.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/product_detail.css" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -27,22 +28,23 @@
     <div class="container">
       <div class="product-detail">
         <div class="product-image">
-          <img src="./assets/images/products/camera.png" alt="Product Image" />
+          <img src="<%= product.specifications.image %>" alt="Product Image" />
         </div>
         <div class="product-info">
-          <h3>Product Name: <span>Camera</span></h3>
-          <p>Price: $<span>100</span></p>
+          <h3>Product Name: <span><%= product.name %></span></h3>
+          <p>Price: $<span><%= product.price %></span></p>
+          <p>Brand: <span><%= product.brand %></span></p>
+          <p>Specification</p>
+          <p>display: <span><%= product.specifications.display %></span></p>
+          <p>processor: <span><%= product.specifications.processor %></span></p>
+          <p>ram: <span><%= product.specifications.ram %></span></p>
+          <p>storage: <span><%= product.specifications.storage %></span></p>
+          <p>stock: <span><%= product.specifications.stock %></span></p>
+
           <div class="star-rating">
             <!--  star rating component here -->
           </div>
           <div class="select-options">
-            <label for="model">Select Model:</label>
-            <select name="model" id="model">
-              <option value="256GB">256GB</option>
-              <option value="512GB">512GB</option>
-              <option value="1TB">1TB</option>
-              <option value="2TB">2TB</option>
-            </select>
             <label for="qty">Select Quantity:</label>
             <select name="qty" id="qty">
               <option value="0">0</option>
@@ -55,14 +57,14 @@
           <button class="add-to-cart">Add to Cart</button>
         </div>
       </div>
-    </div>
-    <div class="product-description">
-      <h3>Product Description</h3>
-      <img
-        src="./assets/images/products/camera.png"
-        alt="Product Description Image"
-      />
-      <p>This is our product description</p>
+      <div class="product-description">
+        <h3>Product Description</h3>
+        <img
+          src="<%= product.specifications.image %>"
+          alt="Product
+        Description Image"
+        />
+      </div>
     </div>
 
     <section class="product-review">
@@ -131,8 +133,8 @@
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
 
-    <script type="module" src="./assets/js/productdetail.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <!-- <script type="module" src="/assets/js/productdetail.js"></script> -->
+    <script src="/assets/js/script.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
