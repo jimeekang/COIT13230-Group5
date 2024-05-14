@@ -16,4 +16,6 @@ productRouter
 
 productRouter.post('/add', productController.createProduct);
 
+//productRouter.route('/productList').get(productController.getAllproducts);
+
 module.exports = productRouter;

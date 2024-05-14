@@ -94,13 +94,13 @@ exports.getAllproducts = async (req, res, next) => {
 
     const tours = await features.query;
 
-    // res.status(200).json({
-    //   status: 'success',
-    //   length: tours.length,
-    //   data: tours,
-    // });
+    res.status(200).json({
+      status: 'success',
+      length: tours.length,
+      data: tours,
+    });
 
-    res.render('productList.html', { tours });
+    //res.render('productList.html', { tours });
   } catch (err) {
     return next(new AppError(err.message, 404));
   }

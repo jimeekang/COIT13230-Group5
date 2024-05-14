@@ -26,3 +26,8 @@ $(document).ready(function () {
     window.location.href = '/addProduct';
   });
 });
+$(document).ready(function () {
+  $('.manage-product-btn').click(function () {
+    window.location.href = '/manageProduct';
+  });
+});

@@ -12,7 +12,7 @@ const app = express();
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.urlencoded({ extended: true }));
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static('views'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
@@ -66,6 +66,11 @@ app.get('/logout', (req, res) => {
   res.render('index.html');
 });
 
+/* Product */
+// app.get('/productList', (req, res) => {
+//   res.render('productList1.html', {tours}); //tours is undefined
+// });
+
 /* Admin */
 app.get('/adminMain', (req, res) => {
   res.render('adminIndex.html');
@@ -73,4 +78,8 @@ app.get('/adminMain', (req, res) => {
 
 app.get('/addProduct', (req, res) => {
   res.render('addProduct.html');
+});
+
+app.get('/manageProduct', (req, res) => {
+  res.render('adminManageProduct.html');
 });
