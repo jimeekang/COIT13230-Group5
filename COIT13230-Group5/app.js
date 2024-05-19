@@ -51,6 +51,7 @@ app.listen(process.env.PORT, () => {
 
 /* User Sign-up / Login / Logout */
 app.get('/main', (req, res) => {
+  console.log(req);
   res.render('index.html');
 });
 
@@ -66,15 +67,26 @@ app.get('/logout', (req, res) => {
   res.render('index.html');
 });
 
+app.get('/updateProfile', (req, res) => {
+  res.render('userProfile.html');
+});
+
 /* Product */
-// app.get('/productList', (req, res) => {
-//   res.render('productList1.html', {tours}); //tours is undefined
-// });
+app.get('/productList', (req, res) => {
+  res.render('productList.htm'); //tours is undefined
+});
+
+/* Cart */
+app.get('/cart', (req, res) => {
+  res.render('cart.html'); //tours is undefined
+});
+
+/* Payment */
+app.get('/payment', (req, res) => {
+  res.render('shipping.html'); //tours is undefined
+});
 
 /* Admin */
-app.get('/adminMain', (req, res) => {
-  res.render('adminIndex.html');
-});
 
 app.get('/addProduct', (req, res) => {
   res.render('addProduct.html');
@@ -82,4 +94,8 @@ app.get('/addProduct', (req, res) => {
 
 app.get('/manageProduct', (req, res) => {
   res.render('adminManageProduct.html');
+});
+
+app.get('/manageReview', (req, res) => {
+  res.render('adminManageReview.html');
 });
