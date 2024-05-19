@@ -1,6 +1,7 @@
 <div class="header-main">
   <div class="container">
-    <a href="/main" class="header-logo">
+    <!-- 클라이언트 측 코드 (main.ejs 파일 내) -->
+    <a class="header-logo" id="main-link">
       <img
         src="/assets/images/logo/logo.png"
         alt="logo"
@@ -39,11 +40,18 @@
       <a href="/logout" class="user-logout">Logout</a>
     </div>
   </div>
+
   <!-- <script src="./assets/js/login.js"></script> -->
   <script>
-    const userName = localStorage.getItem('userName');
-    //console.log(userName);
+    const mainLink = document.getElementById('main-link');
+    const userRole = localStorage.getItem('userRole');
+    if (userRole === 'admin') {
+      mainLink.href = '/adminMain';
+    } else {
+      mainLink.href = '/main';
+    }
 
+    const userName = localStorage.getItem('userName');
     if (userName) {
       $('.user-name').show();
       $('.user-name').text(userName);
@@ -69,6 +77,8 @@
           if (response.statusCode === 200) {
             localStorage.removeItem('userName');
             localStorage.removeItem('userRole');
+            localStorage.removeItem('products');
+            localStorage.removeItem('cartData');
             document.cookie = '';
             window.location.href = '/main';
           } else {
@@ -81,5 +91,9 @@
       });
       window.location.href = '/main';
     });
+
+    const cartCount = document.querySelector('.count');
+    const cartItems = JSON.parse(localStorage.getItem('products'));
+    cartCount.innerHTML = cartItems ? cartItems.length : 0;
   </script>
 </div>

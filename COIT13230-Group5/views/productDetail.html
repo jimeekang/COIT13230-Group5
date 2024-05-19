@@ -28,22 +28,44 @@
     <div class="container">
       <div class="product-detail">
         <div class="product-image">
-          <img src="<%= product.specifications.image %>" alt="Product Image" />
+          <img src="<%= product.image %>" alt="Product Image" />
         </div>
         <div class="product-info">
-          <h3>Product Name: <span><%= product.name %></span></h3>
-          <p>Price: $<span><%= product.price %></span></p>
-          <p>Brand: <span><%= product.brand %></span></p>
+          <p id="productId" style="display: none"><%= product._id %></p>
+          <h3>
+            Product Name: <span id="productName"><%= product.name %></span>
+          </h3>
+          <p>Price: $<span id="productPrice"><%= product.price %></span></p>
+          <p>Brand: <span id="productBrand"><%= product.brand %></span></p>
           <p>Specification</p>
-          <p>display: <span><%= product.specifications.display %></span></p>
-          <p>processor: <span><%= product.specifications.processor %></span></p>
-          <p>ram: <span><%= product.specifications.ram %></span></p>
-          <p>storage: <span><%= product.specifications.storage %></span></p>
-          <p>stock: <span><%= product.specifications.stock %></span></p>
-
-          <div class="star-rating">
-            <!--  star rating component here -->
-          </div>
+          <p>
+            Display:
+            <span id="productDisplay"
+              ><%= product.specifications.display %></span
+            >
+          </p>
+          <p>
+            Processor:
+            <span id="productProcessor"
+              ><%= product.specifications.processor %></span
+            >
+          </p>
+          <p>
+            RAM: <span id="productRam"><%= product.specifications.ram %></span>
+          </p>
+          <p>
+            Storage:
+            <span id="productStorage"
+              ><%= product.specifications.storage %></span
+            >
+          </p>
+          <p>
+            Battery:
+            <span id="productBattery"
+              ><%= product.specifications.battery %></span
+            >
+          </p>
+          <p>Stock: <span id="productStock"><%= product.stock %></span></p>
           <div class="select-options">
             <label for="qty">Select Quantity:</label>
             <select name="qty" id="qty">
@@ -55,6 +77,7 @@
             </select>
           </div>
           <button class="add-to-cart">Add to Cart</button>
+          <!--  star rating component here -->
         </div>
       </div>
     </div>
@@ -79,7 +102,7 @@
 
     <div id="writeReviewSection" style="display: none" class="container">
       <h2>Write Review</h2>
-      <form id="reviewForm">
+      <form action="/review/add" method="POST" id="reviewForm">
         <div class="form-group">
           <label for="reviewTitle">Title:</label>
           <input type="text" id="reviewTitle" name="reviewTitle" required />
@@ -110,6 +133,7 @@
       </form>
     </div>
     <!-- <button id="writeReviewBtn">Write Review</button> -->
+    <!-- <button id="writeReviewBtn">Write Review</button> -->
 
     <footer id="footer"></footer>
 
@@ -125,7 +149,7 @@
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
 
-    <!-- <script type="module" src="/assets/js/productdetail.js"></script> -->
+    <script type="module" src="/assets/js/productdetail.js"></script>
     <script src="/assets/js/script.js"></script>
 
     <script

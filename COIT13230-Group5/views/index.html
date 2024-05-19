@@ -24,6 +24,15 @@
     <!-- Navbar Desktop menu -->
     <nav id="navbar" class="desktop-navigation-menu"></nav>
 
+    <div class="admin-menu container" style="display: none">
+      <h3>Admin Page</h3>
+      <div class="manage-btn">
+        <button class="add-product-btn">Add New Product</button>
+        <button class="manage-product-btn">Manage Product</button>
+        <button class="manage-review-btn">Manage Review</button>
+      </div>
+    </div>
+
     <!-- Main -->
     <main>
       <!-- BANNER   -->
@@ -341,166 +350,6 @@
 
             <div class="product-grid">
               <!-- product card -->
-
-              <div class="showcase">
-                <a id="product-link">
-                  <div class="showcase-banner">
-                    <img
-                      src="./assets/images/products/camera.png"
-                      alt="Mens Winter Leathers Jackets"
-                      width="300"
-                      class="product-img default"
-                    />
-                    <img
-                      src="./assets/images/products/camera.png"
-                      alt="Mens Winter Leathers Jackets"
-                      width="300"
-                      class="product-img hover"
-                    />
-                  </div>
-
-                  <div class="showcase-content">
-                    <a href="#" class="showcase-category">camera</a>
-
-                    <a href="#">
-                      <h3 class="showcase-title">Pink camera</h3>
-                    </a>
-
-                    <div class="showcase-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star-outline"></ion-icon>
-                      <ion-icon name="star-outline"></ion-icon>
-                    </div>
-
-                    <div class="price-box">
-                      <p class="price">$48.00</p>
-                      <del>$75.00</del>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div class="showcase">
-                <div class="showcase-banner">
-                  <img
-                    src="./assets/images/products/headphone.jpeg"
-                    alt="Pure Garment Dyed Cotton Shirt"
-                    class="product-img default"
-                    width="300"
-                  />
-                  <img
-                    src="./assets/images/products/headphone.jpeg"
-                    alt="Pure Garment Dyed Cotton Shirt"
-                    class="product-img hover"
-                    width="300"
-                  />
-
-                  <p class="showcase-badge angle black">sale</p>
-
-                  <div class="showcase-actions"></div>
-                </div>
-
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">headphone</a>
-
-                  <h3>
-                    <a href="#" class="showcase-title">Black headphone</a>
-                  </h3>
-
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-
-                  <div class="price-box">
-                    <p class="price">$45.00</p>
-                    <del>$56.00</del>
-                  </div>
-                </div>
-              </div>
-
-              <div class="showcase">
-                <div class="showcase-banner">
-                  <img
-                    src="./assets/images/products/joyStick.jpeg"
-                    alt="Black Floral Wrap Midi Skirt"
-                    class="product-img default"
-                    width="300"
-                  />
-                  <img
-                    src="./assets/images/products/joyStick.jpeg"
-                    alt="Black Floral Wrap Midi Skirt"
-                    class="product-img hover"
-                    width="300"
-                  />
-
-                  <p class="showcase-badge angle pink">new</p>
-                </div>
-
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Joystick</a>
-
-                  <h3>
-                    <a href="#" class="showcase-title">Playstation Joystick</a>
-                  </h3>
-
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                  </div>
-
-                  <div class="price-box">
-                    <p class="price">$25.00</p>
-                    <del>$35.00</del>
-                  </div>
-                </div>
-              </div>
-
-              <div class="showcase">
-                <div class="showcase-banner">
-                  <img
-                    src="./assets/images/products/tablets.png"
-                    alt="Smart watche Vital Plus"
-                    class="product-img default"
-                    width="300"
-                  />
-                  <img
-                    src="./assets/images/products/tablets.png"
-                    alt="Smart watche Vital Plus"
-                    class="product-img hover"
-                    width="300"
-                  />
-                </div>
-
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Smart tablet</a>
-
-                  <h3>
-                    <a href="#" class="showcase-title">Smart tablet</a>
-                  </h3>
-
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-
-                  <div class="price-box">
-                    <p class="price">$100.00</p>
-                    <del>$120.00</del>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -522,7 +371,7 @@
     ></script>
 
     <script src="/assets/js/script.js"></script>
-
+    <script src="/assets/js/main.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
