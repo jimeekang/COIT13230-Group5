@@ -15,7 +15,7 @@ $(document).ready(function () {
         password: password,
       }),
       success: function (response) {
-        console.log(response);
+        console.log(response.data);
 
         if (response.statusCode === 200) {
           // Login successful
@@ -27,10 +27,8 @@ $(document).ready(function () {
             localStorage.setItem('userName', userName);
             localStorage.setItem('userRole', userRole);
 
-            if (userRole === 'user') {
+            if (userRole) {
               window.location.href = '/main';
-            } else if (userRole === 'admin') {
-              window.location.href = '/adminMain';
             } else {
               console.error('Unknown user role:', role);
             }

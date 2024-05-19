@@ -14,18 +14,20 @@ $(document).ready(function () {
 });
 
 /******* Admin main page direction *******/
+const adminMenu = document.querySelector('.admin-menu');
+const currentUserRole = localStorage.getItem('userRole');
+if (currentUserRole === 'admin') {
+  adminMenu.style.display = 'block';
+}
+
 const addNewProductBtn = document.querySelector('.add-product-btn');
-$(document).ready(function () {
-  $(addNewProductBtn).click(function () {
-    location.href = 'adminAddProduct.html';
-  });
-});
 
 $(document).ready(function () {
   $('.add-product-btn').click(function () {
     window.location.href = '/addProduct';
   });
 });
+
 $(document).ready(function () {
   $('.manage-product-btn').click(function () {
     window.location.href = '/manageProduct';

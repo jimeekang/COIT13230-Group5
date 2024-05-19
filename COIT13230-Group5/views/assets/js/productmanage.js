@@ -1,40 +1,10 @@
-//This is Sample product data for testing
-// const products = [
-//   {
-//     id: 1,
-//     category: 'mobile',
-//     brand: 'Apple',
-//     name: 'iPhone 12',
-//     price: '$999',
-//     description: 'Testing sample data',
-//     date: '2024-04-22',
-//   },
-//   {
-//     id: 2,
-//     category: 'laptop',
-//     brand: 'Apple',
-//     name: 'MacBook Pro',
-//     price: '$1499',
-//     description: 'Testing sample data',
-//     date: '2024-04-22',
-//   },
-//   {
-//     id: 3,
-//     category: 'mobile',
-//     brand: 'Samsung',
-//     name: 'Samsung Galaxy S22',
-//     price: '$899',
-//     description: 'Testing sample data',
-//     date: '2024-04-22',
-//   },
-// ];
 $(document).ready(function () {
   $.ajax({
     url: '/product',
     method: 'GET',
     dataType: 'json',
     success: function (data) {
-      console.log(data.data);
+      //console.log(data.data);
 
       let products = data.data;
       function renderProducts(productsToShow) {
