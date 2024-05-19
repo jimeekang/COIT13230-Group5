@@ -3,6 +3,7 @@ const path = require('path');
 const productModel = require('../model/productModel');
 const AppError = require('../utils/AppError');
 const ApiFeatures = require('../utils/apiFeatures');
+const reviewModel = require('../model/reviewModel');
 
 // Multer configuration
 const storage = multer.diskStorage({
@@ -92,15 +93,13 @@ exports.getAllproducts = async (req, res, next) => {
       .limiting()
       .paginate();
 
-    const tours = await features.query;
+    const products = await features.query;
 
     res.status(200).json({
       status: 'success',
-      length: tours.length,
-      data: tours,
+      length: products.length,
+      data: products,
     });
-
-    //res.render('productList.html', { tours });
   } catch (err) {
     return next(new AppError(err.message, 404));
   }
@@ -126,15 +125,9 @@ exports.getProduct = async (req, res, next) => {
   try {
     const product = await productModel.findById(id);
     if (!product) {
-      throw new AppError('product not found', 404);
+      throw new AppError('Product not found', 404);
     }
 
-    // res.status(200).json({
-    //   status: 'success',
-    //   data: {
-    //     data: product,
-    //   },
-    // });
     res.render('productDetail.html', { product });
   } catch (err) {
     return next(new AppError(err.message, 404));

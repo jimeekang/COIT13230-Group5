@@ -113,7 +113,7 @@ exports.getUser = async (req, res, next) => {
       return next(new AppError('user not exists', 404));
     }
 
-    Utilities.sendResponse(200, 'success', user, res);
+    //Utilities.sendResponse(200, 'success', user, res);
   } catch (err) {
     return next(new AppError(err.message, 404));
   }

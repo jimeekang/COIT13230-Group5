@@ -3,6 +3,43 @@ const AppError = require('../utils/AppError');
 const ApiFeatures = require('../utils/apiFeatures');
 const { filterObj } = require('../utils/response');
 
+exports.createReview = async (req, res, next) => {
+  try {
+    const userReview = req.body;
+
+    const existingReview = await reviewModel.findOne({
+      product: userReview.product,
+      user: req.user._id,
+    });
+
+    if (existingReview) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'You have already reviewed this product.',
+      });
+    }
+
+    const review = await reviewModel.create({
+      ...userReview,
+      user,
+      reviewTitle,
+      reviewDescription,
+      rating,
+      createdAt,
+      product,
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        data: review,
+      },
+    });
+  } catch (err) {
+    return next(new AppError(err.message, 404));
+  }
+};
+
 exports.getAllReviews = async (req, res, next) => {
   try {
     const queryObject = req.query;
@@ -20,23 +57,6 @@ exports.getAllReviews = async (req, res, next) => {
       length: reviews.length,
       data: {
         data: reviews,
-      },
-    });
-  } catch (err) {
-    return next(new AppError(err.message, 404));
-  }
-};
-
-exports.createReview = async (req, res, next) => {
-  try {
-    const userReview = req.body;
-
-    const review = await reviewModel.create(userReview);
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        data: review,
       },
     });
   } catch (err) {
