@@ -22,4 +22,6 @@ reviewRouter
   .get(reviewController.getReview)
   .patch(authController.protected, reviewController.updateReview);
 
+reviewRouter.post('/add', reviewController.createReview);
+
 module.exports = reviewRouter;
