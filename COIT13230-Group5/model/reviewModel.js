@@ -1,35 +1,37 @@
 const mongoose = require('mongoose');
+const User = require('./userModel');
+const Product = require('./productModel');
 
 const reviewSchema = new mongoose.Schema(
   {
     rating: {
       type: Number,
-      required: [true, 'Please enter a rating..'],
-      min: [1, 'Rating must be more then one'],
-      max: [5, 'Rating must ne less then or equal to 5'],
+      required: [true, 'Please enter a rating.'],
+      min: [1, 'Rating must be more than one'],
+      max: [5, 'Rating must be less than or equal to 5'],
     },
-    review: {
+    reviewTitle: {
       type: String,
       required: [true, 'Please enter a review message.'],
     },
-
+    reviewDescription: {
+      type: String,
+      required: [true, 'Please enter a review message.'],
+    },
     product: {
       type: mongoose.Schema.ObjectId,
-      ref: 'product',
-      required: [true, 'Review must belong to Product'],
+      ref: Product,
+      required: [true, 'Review must belong to a Product'],
     },
-
     user: {
       type: mongoose.Schema.ObjectId,
-      ref: 'user',
-      required: [true, 'Review must belong to User'],
+      ref: User,
+      required: [true, 'Review must belong to a User'],
     },
-
     createdAt: {
       type: Date,
       default: Date.now,
     },
-
     updatedAt: Date,
   },
   {
