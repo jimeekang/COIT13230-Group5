@@ -1,14 +1,21 @@
 const JWT = require('jsonwebtoken');
 
-exports.sendResponse = (statusCode, statusMessage, data, user, role, res) => {
+// exports.sendResponse = (statusCode, statusMessage, data, user, res) => {
+//   res.status(statusCode).send({
+//     statusCode,
+//     status: statusMessage,
+//     data: {
+//       data,
+//     },
+//     user,
+//     res,
+//   });
+// };
+exports.sendResponse = (statusCode, statusMessage, data, res) => {
   res.status(statusCode).send({
     statusCode,
     status: statusMessage,
-    data: {
-      data,
-    },
-    user,
-    role,
+    data,
   });
 };
 
