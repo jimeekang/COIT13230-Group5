@@ -5,14 +5,25 @@ const userRouter = require('./routes/userRouter');
 const productRouter = require('./routes/productRouter');
 const reviewRouter = require('./routes/reviewRouter');
 const categoryRouter = require('./routes/categoryRoutes');
+const cookieParser = require('cookie-parser');
 
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.urlencoded({ extended: true }));
+
+// Set bodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Cookie parser
+app.use(cookieParser());
+
+// View engine
 app.use(express.static('views'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
@@ -51,7 +62,6 @@ app.listen(process.env.PORT, () => {
 
 /* User Sign-up / Login / Logout */
 app.get('/main', (req, res) => {
-  console.log(req);
   res.render('index.html');
 });
 
@@ -67,7 +77,7 @@ app.get('/logout', (req, res) => {
   res.render('index.html');
 });
 
-app.get('/updateProfile', (req, res) => {
+app.get('/updateProfilePage', (req, res) => {
   res.render('userProfile.html');
 });
 
