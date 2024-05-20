@@ -2,7 +2,7 @@ const userModel = require('../model/userModel.js');
 const AppError = require('../utils/AppError.js');
 const Utilities = require('../utils/response.js');
 
-// TODO -- For upadte user Profile
+// TODO -- For update user Profile
 exports.updateProfile = async (req, res, next) => {
   try {
     if (req.body.password || req.body.confirmPassword) {
@@ -107,13 +107,13 @@ exports.getAllUsers = async (req, res, next) => {
 // TODO -- get one user
 exports.getUser = async (req, res, next) => {
   try {
-    const user = await userModel.findOne({ _id: req._id });
+    const user = await userModel.findById(req.params.userid);
 
     if (!user) {
-      return next(new AppError('user not exists', 404));
+      return next(new AppError('User not found', 404));
     }
 
-    //Utilities.sendResponse(200, 'success', user, res);
+    Utilities.sendResponse(200, 'success', user, res);
   } catch (err) {
     return next(new AppError(err.message, 404));
   }

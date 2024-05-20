@@ -7,27 +7,7 @@ exports.createReview = async (req, res, next) => {
   try {
     const userReview = req.body;
 
-    const existingReview = await reviewModel.findOne({
-      product: userReview.product,
-      user: req.user._id,
-    });
-
-    if (existingReview) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'You have already reviewed this product.',
-      });
-    }
-
-    const review = await reviewModel.create({
-      ...userReview,
-      user,
-      reviewTitle,
-      reviewDescription,
-      rating,
-      createdAt,
-      product,
-    });
+    const review = await reviewModel.create(userReview);
 
     res.status(200).json({
       status: 'success',

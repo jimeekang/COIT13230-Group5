@@ -5,25 +5,24 @@ const AppError = require('../utils/AppError');
 const ApiFeatures = require('../utils/apiFeatures');
 const reviewModel = require('../model/reviewModel');
 
-// Multer configuration
+// multer setting
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/');
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
+    cb(null, Date.now() + path.extname(file.originalname));
   },
 });
 
 const upload = multer({ storage: storage }).single('image');
 
-// TODO -- admin user can create a product
 exports.createProduct = (req, res, next) => {
   upload(req, res, async (err) => {
     if (err instanceof multer.MulterError) {
       return next(new AppError('File upload error', 400));
     } else if (err) {
-      return next(err);
+      return next(new AppError(err.message, 500));
     }
 
     try {
@@ -44,7 +43,8 @@ exports.createProduct = (req, res, next) => {
       } = req.body;
 
       // Handle image if uploaded:
-      const image = req.file ? req.file.path : 'sss'; // Get the path of the uploaded image
+      const image = req.file ? req.file.path : null;
+      console.log('Uploaded image path:', image); // 이미지 경로를 로그에 출력
 
       const productData = {
         ratingAverage: 4.7,
@@ -74,15 +74,14 @@ exports.createProduct = (req, res, next) => {
       //   status: 'success',
       //   data: product,
       // });
-      res.redirect('/addProduct');
+      res.status(200).redirect('/addProduct');
     } catch (err) {
-      return next(new AppError(err.message, 404));
+      return next(new AppError(err.message, 400));
     }
   });
 };
 
 // TODO -- Get All products and Query Features includes (Sorting & Filtering & Pagination &  Limiting)
-
 exports.getAllproducts = async (req, res, next) => {
   const queryObject = req.query;
 

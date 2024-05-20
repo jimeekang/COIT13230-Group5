@@ -68,57 +68,51 @@ exports.login = async (req, res, next) => {
 
   // Send login token in a cookie named 'auth_token'
   res.cookie('auth_token', token);
-
   const loginUser = await userModel.findOne({ email });
-  utils.sendResponse(
-    200,
-    'Login successful',
-    token,
-    loginUser.fullName,
-    loginUser.role,
-    res
-  );
+  utils.sendResponse(200, 'Login successful', { token, user: loginUser }, res);
 };
 
 exports.logout = async (req, res, next) => {
-  // remove cookie
+  // Remove the auth_token cookie
   res.cookie('auth_token', '', { expires: new Date(0) });
-  utils.sendResponse(200, 'Logout successful', null, null, null, res);
+  utils.sendResponse(200, 'Logout successful', null, res);
 };
 
 exports.protected = async (req, res, next) => {
-  let token = req.headers.authorization;
+  let token;
 
-  if (token.startsWith('Bearer')) {
-    token = token.split(' ')[1];
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.auth_token) {
+    token = req.cookies.auth_token;
   }
+
+  if (!token) {
+    return next(
+      new AppError('You are not logged in! Please log in to get access.', 401)
+    );
+  }
+
   try {
-    // TODO -- check there is token in the header or not
-    if (!token) {
-      return next(
-        new AppError('You are not loggedIn! please login to get access', 401)
-      );
-    }
+    const decoded = await jwt.verify(token, process.env.SECRET_KEY);
 
-    // TODO -- Verify the token
-    const result = await jwt.verify(token, process.env.SECRET_KEY);
-
-    // TODO -- find user is steel exist or not
-
-    const currunetUser = await userModel.findOne({ _id: result._id });
-
-    if (!currunetUser) {
+    const currentUser = await userModel.findById(decoded._id);
+    if (!currentUser) {
       return next(
         new AppError(
-          "you can't access this route! please signup first to get access",
+          'The user belonging to this token does no longer exist.',
           401
         )
       );
     }
-    req.users = currunetUser;
+
+    req.users = currentUser;
     next();
   } catch (err) {
-    return next(new AppError(err.message, 401));
+    return next(new AppError('Invalid token. Please log in again!', 401));
   }
 };
 
