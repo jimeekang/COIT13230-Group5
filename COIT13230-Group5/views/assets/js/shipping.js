@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const currentUserString = localStorage.getItem('currentUser');
+
+  // Check if currentUser exists in localStorage
+  if (currentUserString) {
+    const currentUser = JSON.parse(currentUserString);
+
+    // Set the values of the input fields
+    document.getElementById('email').value = currentUser.email;
+    document.getElementById('fullName').value = currentUser.fullName;
+    document.getElementById('address').value = currentUser.address;
+    document.getElementById('mobile').value = currentUser.phoneNumber;
+  }
+
   // Show all Price
   const cartData = JSON.parse(localStorage.getItem('cartData'));
   if (cartData) {

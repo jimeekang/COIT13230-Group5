@@ -10,6 +10,7 @@ let totalPrice = 0;
 let deliverCost = 20;
 
 const checkoutBtn = document.querySelector('.checkout-btn');
+const continueBtn = document.querySelector('.continue-btn');
 const cancelBtn = document.querySelector('.cancel-btn');
 
 const products = JSON.parse(localStorage.getItem('products')) || [];
@@ -123,6 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
   $(document).ready(function () {
     $(cancelBtn).click(function () {
       location.href = '/main';
+    });
+  });
+
+  $(document).ready(function () {
+    $(continueBtn).click(function () {
+      history.back();
     });
   });
 });

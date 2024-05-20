@@ -14,11 +14,13 @@ $(document).ready(function () {
 });
 
 /******* Admin main page direction *******/
-const adminMenu = document.querySelector('.admin-menu');
-const currentUserRole = localStorage.getItem('userRole');
-if (currentUserRole === 'admin') {
-  adminMenu.style.display = 'block';
-}
+document.addEventListener('DOMContentLoaded', function () {
+  const adminMenu = document.querySelector('.admin-menu');
+  const currentUserRole = localStorage.getItem('userRole');
+  if (adminMenu && currentUserRole === 'admin') {
+    adminMenu.style.display = 'block';
+  }
+});
 
 const addNewProductBtn = document.querySelector('.add-product-btn');
 

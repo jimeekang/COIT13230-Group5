@@ -20,13 +20,14 @@ $(document).ready(function () {
         if (response.statusCode === 200) {
           // Login successful
           const token = document.cookie;
-          const userName = response.user;
-          const userRole = response.role;
+          const userName = response.data.user.fullName;
+          const userRole = response.data.user.role;
+          const currentUser = response.data.user;
 
           if (token) {
             localStorage.setItem('userName', userName);
             localStorage.setItem('userRole', userRole);
-
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
             if (userRole) {
               window.location.href = '/main';
             } else {
