@@ -39,4 +39,5 @@ userRouter
     userController.getAllUsers
   );
 
+userRouter.get('/:userid', authController.protected, userController.getUser);
 module.exports = userRouter;
