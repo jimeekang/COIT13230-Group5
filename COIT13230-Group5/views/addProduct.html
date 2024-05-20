@@ -21,11 +21,19 @@
 
   <body>
     <header id="header"></header>
+
     <nav id="navbar" class="desktop-navigation-menu"></nav>
+
     <main id="addproduct">
       <div class="container">
         <h1>Create Product</h1>
-        <form action="/product/add" method="POST" id="add-product-form">
+
+        <form
+          action="/product/add"
+          method="POST"
+          id="add-product-form"
+          enctype="multipart/form-data"
+        >
           <div class="form-group">
             <label for="name">Product Name:</label>
             <input type="text" id="name" name="name" required />
@@ -113,7 +121,6 @@
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
-
     <script src="/assets/js/script.js"></script>
 
     <script

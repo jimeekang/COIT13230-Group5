@@ -84,25 +84,13 @@
 
     <section class="product-review">
       <h3>Reviews</h3>
-      <div class="review">
-        <div class="review-header">
-          <div class="stars">★★★★★</div>
-          <div class="customer-info">
-            <p class="customer-name">John Doe</p>
-            <p class="review-date">April 15, 2024</p>
-          </div>
-        </div>
-        <p class="review-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at
-          libero ac lorem congue eleifend.
-        </p>
-      </div>
+      <div id="review-container"></div>
       <button id="writeReviewBtn">Write a Review</button>
     </section>
 
     <div id="writeReviewSection" style="display: none" class="container">
       <h2>Write Review</h2>
-      <form action="/review/add" method="POST" id="reviewForm">
+      <form id="reviewForm">
         <div class="form-group">
           <label for="reviewTitle">Title:</label>
           <input type="text" id="reviewTitle" name="reviewTitle" required />

@@ -28,7 +28,11 @@
 
       <p class="user-name"></p>
 
-      <a class="action-btn user-profile" type="button" href="/userProfile.html">
+      <a
+        class="action-btn user-profile"
+        type="button"
+        href="/updateProfilePage"
+      >
         <ion-icon name="person-outline"></ion-icon>
       </a>
 
@@ -44,12 +48,7 @@
   <!-- <script src="./assets/js/login.js"></script> -->
   <script>
     const mainLink = document.getElementById('main-link');
-    const userRole = localStorage.getItem('userRole');
-    if (userRole === 'admin') {
-      mainLink.href = '/adminMain';
-    } else {
-      mainLink.href = '/main';
-    }
+    mainLink.href = '/main';
 
     const userName = localStorage.getItem('userName');
     if (userName) {
@@ -75,10 +74,12 @@
         success: function (response) {
           console.log(response);
           if (response.statusCode === 200) {
+            /**/
             localStorage.removeItem('userName');
             localStorage.removeItem('userRole');
             localStorage.removeItem('products');
             localStorage.removeItem('cartData');
+            localStorage.removeItem('currentUser');
             document.cookie = '';
             window.location.href = '/main';
           } else {
