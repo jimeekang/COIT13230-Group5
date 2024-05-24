@@ -1,0 +1,221 @@
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.product-detail {
+  display: flex;
+  align-items: center;
+}
+
+.product-image {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.product-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-info {
+  flex: 2;
+}
+
+.select-options {
+  margin-top: 20px;
+}
+
+.select-options label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.select-options select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.add-to-cart {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  background-color: #0056b3;
+}
+
+.product-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.product-description h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.product-description img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.product-description p {
+  line-height: 1.5;
+  text-align: center;
+}
+.product-review {
+  margin-top: 20px;
+}
+
+.product-review h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.product-review {
+  margin-top: 20px;
+  max-width: 800px; /* Adjusting the maximum width as needed */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-review h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.review {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.write-form {
+  display: none;
+}
+
+.write-form visible {
+  display: block;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.stars {
+  font-size: 1.2em;
+}
+
+.customer-info {
+  text-align: right;
+}
+
+.customer-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.review-description {
+  line-height: 1.5;
+}
+
+#writeReviewBtn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+#writeReviewBtn:hover {
+  background-color: #0056b3;
+}
+/* write Review Section*/
+
+/* Styles for the write review section */
+#writeReviewSection {
+  display: none;
+  margin-top: 20px;
+}
+
+#writeReviewSection h2 {
+  font-size: 24px;
+
+  margin-bottom: 10px;
+}
+
+#writeReviewSection .form-group {
+  margin-bottom: 15px;
+}
+
+#writeReviewSection label {
+  display: block;
+}
+
+#writeReviewSection textarea,
+#writeReviewSection input[type='text'],
+#writeReviewSection select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#writeReviewSection .btn-group {
+  margin-top: 15px;
+}
+
+#writeReviewSection button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#writeReviewSection button[type='submit'] {
+  background-color: #007bff;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+#writeReviewSection button.cancel {
+  background-color: #dc3545;
+  color: #fff;
+  margin-bottom: 4px;
+}
+/* Styles for the message container */
+.message-container {
+  display: none;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.message-container.success {
+  background-color: #dff0d8;
+  color: #3c763d;
+  border: 1px solid #4caf50;
+}
+
+.message-container.error {
+  background-color: #f2dede;
+  color: #a94442;
+  border: 1px solid #ebccd1;
+}

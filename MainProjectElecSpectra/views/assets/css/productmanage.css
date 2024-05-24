@@ -1,0 +1,133 @@
+.product-management {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.product-management h4 {
+  color: #9cbee8;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.filter-group label {
+  margin-right: 5px;
+}
+
+.search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 165px;
+}
+
+.search button {
+  padding: 8px 15px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-list th,
+.product-list td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.product-list th {
+  background-color: #f2f2f2;
+}
+
+.product-list td:last-child {
+  text-align: center;
+}
+
+.product-list td:last-child button {
+  padding: 5px 10px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-list td:last-child button:hover {
+  background-color: #c82333;
+}
+/* Edit and Delete Button Styles */
+.edit-btn,
+.delete-btn {
+  padding: 8px 12px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+.edit-btn:hover,
+.delete-btn:hover {
+  background-color: rgba(0, 123, 255, 0.8);
+}
+
+.delete-btn:hover {
+  background-color: rgba(220, 53, 69, 0.8);
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.prev-btn,
+.next-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  background-color: rgba(0, 123, 255, 0.8);
+}
