@@ -81,11 +81,6 @@ app.get('/updateProfilePage', (req, res) => {
   res.render('userProfile.html');
 });
 
-/* Product */
-app.get('/productList', (req, res) => {
-  res.render('productList.htm'); //tours is undefined
-});
-
 /* Cart */
 app.get('/cart', (req, res) => {
   res.render('cart.html'); //tours is undefined
@@ -98,14 +93,6 @@ app.get('/payment', (req, res) => {
 
 /* Admin */
 
-app.get('/addProduct', (req, res) => {
-  res.render('addProduct.html');
-});
-
-app.get('/manageProduct', (req, res) => {
-  res.render('adminManageProduct.html');
-});
-
-app.get('/manageReview', (req, res) => {
-  res.render('adminManageReview.html');
+app.get('/admin', (req, res) => {
+  res.render('adminIndex.html');
 });
