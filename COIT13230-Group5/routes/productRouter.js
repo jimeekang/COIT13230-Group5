@@ -16,6 +16,12 @@ productRouter
 
 productRouter.post('/add', productController.createProduct);
 
-//productRouter.route('/productList').get(productController.getAllproducts);
+productRouter
+  .route('/category/:categoryName')
+  .get(productController.getAllCategoryProducts);
+
+productRouter
+  .route('/brand/:brandName')
+  .get(productController.getAllBrandProducts);
 
 module.exports = productRouter;
