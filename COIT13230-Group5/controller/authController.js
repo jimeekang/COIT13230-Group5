@@ -21,6 +21,11 @@ exports.signUp = async (req, res, next) => {
   } = req.body);
 
   try {
+    const existingUser = await userModel.findOne({ email: email });
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email already registered' });
+    }
+
     user = await userModel.create({
       email: email,
       password: password,
@@ -41,35 +46,48 @@ exports.signUp = async (req, res, next) => {
 
 // TODO -- user login route
 exports.login = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
 
   if (!email || !password) {
-    return next(new AppError('Enter username and password', 404));
+    return res
+      .status(400)
+      .json({ statusCode: 400, message: 'Enter email and password' });
   }
 
-  //TODO -- get user from the database using username
+  // Get user from the database using email
   const user = await userModel.findOne({ email: email });
 
   if (!user) {
-    return next(new AppError('Entered username and password are wrong.', 404));
+    return res.status(404).json({ statusCode: 404, message: 'User not found' });
   }
-  //console.log(password + ' ' + user.password);
 
-  const passwordcheck = await user.comparePassword(password, user.password);
-  // TODO -- check user Entered password match with the database password
+  // Check if the entered password matches the database password
+  const passwordCheck = await user.comparePassword(password, user.password);
 
-  if (!passwordcheck) {
-    return next(new AppError('Enterd username and password are wrong.', 404));
+  if (!passwordCheck) {
+    return res
+      .status(401)
+      .json({ statusCode: 401, message: 'Invalid password' });
   }
-  // TODO -- create login token
+
+  // Check role mismatch for admin users
+  if (role === 'admin' && user.role !== 'admin') {
+    return res
+      .status(403)
+      .json({ statusCode: 403, message: 'Access denied for non-admin users' });
+  }
+
+  // Create login token
   const token = await utils.createLoggedInToken(user._id);
-
-  // TODO -- finally send the login token to the user
 
   // Send login token in a cookie named 'auth_token'
   res.cookie('auth_token', token);
   const loginUser = await userModel.findOne({ email });
-  utils.sendResponse(200, 'Login successful', { token, user: loginUser }, res);
+  res.status(200).json({
+    statusCode: 200,
+    message: 'Login successful',
+    data: { token, user: loginUser },
+  });
 };
 
 exports.logout = async (req, res, next) => {

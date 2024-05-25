@@ -24,7 +24,10 @@ exports.getAllReviews = async (req, res, next) => {
   try {
     const queryObject = req.query;
 
-    const features = new ApiFeatures(reviewModel.find(), queryObject)
+    const features = new ApiFeatures(
+      reviewModel.find().populate('user').populate('product'),
+      queryObject
+    )
       .filter()
       .sort()
       .limiting()
