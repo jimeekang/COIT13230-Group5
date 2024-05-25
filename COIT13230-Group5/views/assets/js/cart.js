@@ -102,7 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
   updateTotalAfterDiscount(totalPrice);
 
   // check out to payment
+  const token = document.cookie;
   checkoutBtn.addEventListener('click', () => {
+    if (!token) {
+      alert('Please Login');
+      return;
+    }
+
     const cartData = {
       products: products, // Corrected variable name
       subtotal: totalPrice,

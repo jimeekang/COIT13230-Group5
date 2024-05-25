@@ -26,10 +26,13 @@ $(document).ready(function () {
     const phoneNumber = $('#mobileNumber').val();
     const password = $('#password').val();
     const confirmPassword = $('#confirmPassword').val();
+
     if (password !== confirmPassword) {
-      alert('Passwords do not match. Please try again.');
-      return;
+      $('#passwordError').show(); // Show the password error message
+    } else {
+      $('#passwordError').hide(); // Hide the password error message
     }
+
     $.ajax({
       url: '/user/updateProfile',
       method: 'PATCH',
@@ -38,9 +41,7 @@ $(document).ready(function () {
       },
       data: JSON.stringify({ address, phoneNumber }),
       success: function (data) {
-        alert('Profile updated successfully!');
-
-        window.location.href = '/main';
+        $('#successModal').modal('show');
       },
       error: function (xhr, status, error) {
         alert(

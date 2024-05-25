@@ -4,19 +4,15 @@ $(document).ready(function () {
 
     const email = $('#email').val();
     const password = $('#password').val();
+    const role = $('#role').is(':checked') ? 'admin' : 'user';
 
     $.ajax({
       url: '/user/login',
       method: 'POST',
       dataType: 'json',
       contentType: 'application/json',
-      data: JSON.stringify({
-        email: email,
-        password: password,
-      }),
+      data: JSON.stringify({ email, password, role }),
       success: function (response) {
-        console.log(response.data);
-
         if (response.statusCode === 200) {
           // Login successful
           const token = document.cookie;
@@ -25,33 +21,53 @@ $(document).ready(function () {
           const currentUser = response.data.user;
 
           if (token) {
-            localStorage.setItem('userName', userName);
-            localStorage.setItem('userRole', userRole);
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            if (userRole) {
-              window.location.href = '/main';
+            if (userRole === role) {
+              localStorage.setItem('userName', userName);
+              localStorage.setItem('userRole', userRole);
+              localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+              const redirectUrl = userRole === 'admin' ? '/admin' : '/main';
+              window.location.href = redirectUrl;
+
+              const successMessage = `Login successful! Welcome, ${userName}.`;
+              $('#success-msg .message-text').text(successMessage);
+              $('#success-msg').removeClass('hidden').addClass('visible');
+
+              setTimeout(function () {
+                window.location.href = redirectUrl;
+              }, 3000);
             } else {
-              console.error('Unknown user role:', role);
+              showError('Role mismatch. Access denied.');
             }
           } else {
             console.error('Login token not found in cookie!');
           }
-        } else {
-          // Login failed .error-msg
-          let errorMessage = 'Login failed.';
-
-          if (response.statusCode === 404 || response.statusCode === 401) {
-            errorMessage = 'Invalid email or password.';
-          }
-          $('.error-msg').addClass('visible');
-          $('.error-msg').text(errorMessage);
         }
       },
-      error: function (error) {
-        $('.error-msg').text(
-          'An error occurred during login. Please try again.'
-        );
+      error: function (jqXHR) {
+        let errorMessage = 'Login failed.';
+
+        switch (jqXHR.status) {
+          case 404:
+            errorMessage = 'User not found.';
+            break;
+          case 401:
+            errorMessage = 'Invalid password.';
+            break;
+          case 403:
+            errorMessage = 'Access denied for non-admin users.';
+            break;
+          case 400:
+            errorMessage = 'Enter email and password.';
+            break;
+        }
+
+        showError(errorMessage);
       },
     });
   });
+
+  function showError(message) {
+    $('.error-msg').addClass('visible').text(message);
+  }
 });

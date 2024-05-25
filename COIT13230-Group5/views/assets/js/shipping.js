@@ -26,4 +26,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // Handle case where no cart data is found (empty cart)
     alert('No cart data found');
   }
+
+  // After successful payment
+  const paymentSuccess = true; // This should be set based on the actual payment success status
+  if (paymentSuccess) {
+    // Clear cart data
+    localStorage.removeItem('cartData');
+    localStorage.removeItem('products');
+
+    // Update cart count to 0
+    const cartCount = document.querySelector('.count');
+    cartCount.innerHTML = 0;
+  }
 });

@@ -45,7 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
   document
     .querySelector('#writeReviewBtn')
     .addEventListener('click', function () {
-      document.getElementById('writeReviewSection').style.display = 'block';
+      const token = document.cookie;
+      if (token) {
+        document.getElementById('writeReviewSection').style.display = 'block';
+      } else {
+        alert('Please Login');
+      }
     });
 
   document.querySelector('.cancel').addEventListener('click', function () {
