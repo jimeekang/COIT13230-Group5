@@ -1,3 +1,12 @@
+const token = document.cookie;
+// Extract product data from HTML
+const productName = document.getElementById('productName').textContent;
+const productBrand = document.getElementById('productBrand').textContent;
+const productPrice = parseFloat(
+  document.getElementById('productPrice').textContent.replace('$', '')
+);
+const productId = document.getElementById('productId').textContent;
+
 document.addEventListener('DOMContentLoaded', function () {
   /* Add Cart */
   const addToCartBtn = document.querySelector('.add-to-cart');
@@ -5,47 +14,41 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
 
     const selectedQuantity = document.getElementById('qty').value;
-
     if (selectedQuantity === '0') {
       window.alert('Please select quantity.');
       return;
     }
 
-    // Extract product data from HTML
-    const productName = document.getElementById('productName').textContent;
-    const productBrand = document.getElementById('productBrand').textContent;
-    const productPrice = parseFloat(
-      document.getElementById('productPrice').textContent.replace('$', '')
-    );
-    const productId = document.getElementById('productId').textContent;
+    if (token) {
+      let product = {
+        id: productId,
+        name: productName,
+        brand: productBrand,
+        price: productPrice,
+        quantity: selectedQuantity,
+        subtotalPrice: productPrice * selectedQuantity,
+      };
 
-    const product = {
-      id: productId,
-      name: productName,
-      brand: productBrand,
-      price: productPrice,
-      quantity: selectedQuantity,
-      subtotalPrice: productPrice * selectedQuantity,
-    };
+      // Retrieve products array from localStorage
+      let products = JSON.parse(localStorage.getItem('products')) || [];
 
-    // Retrieve products array from localStorage
-    let products = JSON.parse(localStorage.getItem('products')) || [];
+      // Add the new product to the products array
+      products.push(product);
 
-    // Add the new product to the products array
-    products.push(product);
+      // Store the updated products array back into localStorage
+      localStorage.setItem('products', JSON.stringify(products));
 
-    // Store the updated products array back into localStorage
-    localStorage.setItem('products', JSON.stringify(products));
-
-    window.alert('Product added to cart successfully.');
-    window.location.href = '/cart';
+      window.alert('Product added to cart successfully.');
+      window.location.href = '/cart';
+    } else {
+      alert('Please Login');
+    }
   });
 
   /* Display Write Review Button */
   document
     .querySelector('#writeReviewBtn')
     .addEventListener('click', function () {
-      const token = document.cookie;
       if (token) {
         document.getElementById('writeReviewSection').style.display = 'block';
       } else {
