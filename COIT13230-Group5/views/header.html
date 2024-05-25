@@ -96,5 +96,79 @@
     const cartCount = document.querySelector('.count');
     const cartItems = JSON.parse(localStorage.getItem('products'));
     cartCount.innerHTML = cartItems ? cartItems.length : 0;
+
+    /*Search functionality*/
+    const searchBtn = document.querySelector('.search-btn');
+    const searchField = document.querySelector('.search-field');
+
+    searchBtn.addEventListener('click', searchProducts);
+    searchField.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        searchProducts();
+      }
+    });
+
+    function searchProducts() {
+      const searchQuery = searchField.value.toLowerCase();
+      $.ajax({
+        url: '/product',
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          const products = data.data.filter((p) => {
+            return (
+              p.name.toLowerCase().includes(searchQuery) ||
+              p.category.toLowerCase().includes(searchQuery)
+            );
+          });
+          displayProducts(products);
+          scrollToProducts(); // Scroll to the products section
+        },
+        error: function (xhr, status, error) {
+          console.error('AJAX error:', error);
+        },
+      });
+    }
+
+    function displayProducts(products) {
+      const productGrid = document.querySelector('.product-grid');
+      if (productGrid) {
+        productGrid.innerHTML = ''; // Clear existing products
+        products.forEach((p) => {
+          let showcase = `<div class="showcase">
+            <div class="showcase-banner">
+              <img src="${p.image}" alt="Product Image" class="product-img default" width="300" />
+              <img src="${p.image}" alt="Product Image" class="product-img hover" width="300" />
+              <div class="showcase-actions"></div>
+            </div>
+            <div class="showcase-content">
+              <a href="/product/${p._id}" class="showcase-category">${p.name}</a>
+              <h3><a href="/product/${p._id}" class="showcase-title">${p.name}</a></h3>
+              <div class="showcase-rating">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+              </div>
+              <div class="price-box">
+                <p class="price">$${p.price}</p>
+                <del>$56.00</del>
+              </div>
+            </div>
+          </div>`;
+          productGrid.innerHTML += showcase;
+        });
+      } else {
+        console.error('.product-grid element not found');
+      }
+    }
+
+    function scrollToProducts() {
+      const productSection = document.querySelector('.product-grid');
+      if (productSection) {
+        productSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   </script>
 </div>

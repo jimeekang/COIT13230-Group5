@@ -7,7 +7,6 @@
     <title>Web Based Application ElecSpectra</title>
 
     <!-- - custom css link-->
-
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/userprofile.css" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -47,6 +46,9 @@
               name="confirmPassword"
               required
             />
+            <span id="passwordError" class="text-danger" style="display: none"
+              >Passwords do not match</span
+            >
           </div>
           <div class="form-group">
             <label for="address">Address:</label>
@@ -56,8 +58,8 @@
             <label for="mobileNumber">Mobile Number:</label>
             <input type="tel" id="mobileNumber" name="mobileNumber" />
           </div>
+
           <div class="button-group">
-            <!-- <button type="button" id="editBtn">Edit</button> -->
             <button type="submit" id="saveBtn">Save</button>
             <button type="button" id="cancelBtn">Cancel</button>
           </div>
@@ -66,12 +68,44 @@
     </div>
     <footer id="footer"></footer>
 
+    <!-- Success Popup Modal -->
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      aria-labelledby="successModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="successModalLabel">Success</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Profile updated successfully!</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ionicon link -->
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
     ></script>
-
     <script
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"

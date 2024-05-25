@@ -5,9 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Based Application ElecSpectra</title>
-
-    <!-- - custom css link-->
-
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/list-style.css" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -19,26 +16,19 @@
     />
   </head>
   <body>
-    <!--Header Content-->
     <header id="header"></header>
-
-    <!-- Navbar Desktop menu -->
     <nav id="navbar" class="desktop-navigation-menu"></nav>
-
     <main id="list">
       <div class="container">
         <h2>Product List</h2>
-
-        <!-- category -->
         <div class="list-category">
-          <select name="Brand" id="barnd">
+          <select name="Brand" id="brand">
             <option value="apple">Apple</option>
             <option value="samsung">Samsung</option>
             <option value="huawei">Huawei</option>
             <option value="google">Google</option>
             <option value="etc">etc</option>
           </select>
-
           <select name="Price" id="price">
             <option value="200">Under $200</option>
             <option value="499">$200-$499</option>
@@ -46,7 +36,6 @@
             <option value="999">$800-$999</option>
             <option value="1000">Over $1000</option>
           </select>
-
           <select name="Storage" id="storage">
             <option value="64">64GB</option>
             <option value="128">128GB</option>
@@ -54,81 +43,66 @@
             <option value="512">512GB</option>
             <option value="1TB">1TB</option>
           </select>
-
           <select name="Period" id="period">
             <option value="new">New</option>
             <option value="old">Old</option>
           </select>
           <div class="product-main">
             <div class="product-grid">
-              <!-- product card -->
-
-              <% for (let i = 0; i < tours.length; i++) { %>
-
+              <% for (let i = 0; i < products.length; i++) { %>
               <div class="showcase">
                 <div class="showcase-banner">
                   <img
-                    src="<%= `/product/${tours[i].image}` %>"
-                    alt="Mens Winter Leathers Jackets"
+                    src="/<%= products[i].specifications.image %>"
+                    alt="<%= products[i].name %>"
                     width="300"
                     class="product-img default"
                   />
                   <img
-                    src="<%= `/product/${tours[i].image}` %>"
-                    alt="Mens Winter Leathers Jackets"
+                    src="/<%= products[i].specifications.image %>"
+                    alt="<%= products[i].name %>"
                     width="300"
                     class="product-img hover"
                   />
                 </div>
-
                 <div class="showcase-content">
-                  <p class="showcase-category"><%= tours[i].name %></p>
-                  <h3 class="showcase-title"><%= tours[i].brand %></h3>
-
+                  <p class="showcase-category"><%= products[i].name %></p>
+                  <h3 class="showcase-title"><%= products[i].brand %></h3>
                   <div class="showcase-rating" style="color: orange">
-                    <% for (let j = 0; j < Math.floor(tours[i].ratingAverage);
-                    j++) { %>
+                    <% for (let j = 0; j <
+                    Math.floor(products[i].ratingAverage); j++) { %>
                     <ion-icon name="star"></ion-icon>
-                    <% } %> <% if (tours[i].ratingAverage % 1 !== 0) { %>
+                    <% } %> <% if (products[i].ratingAverage % 1 !== 0) { %>
                     <ion-icon name="star-half"></ion-icon>
-                    <% } %> <% for (let j = Math.floor(tours[i].ratingAverage);
-                    j < 5; j++) { %>
+                    <% } %> <% for (let j =
+                    Math.floor(products[i].ratingAverage); j < 5; j++) { %>
                     <ion-icon name="star-outline"></ion-icon>
                     <% } %>
                   </div>
-
                   <div class="price-box">
-                    <p class="price">$<%= tours[i].price %></p>
+                    <p class="price">$<%= products[i].price %></p>
                   </div>
-                  <a type="button" href="<%= `/product/${tours[i]._id}` %>"
+                  <a type="button" href="<%= `/product/${products[i]._id}` %>"
                     >See Details</a
                   >
                 </div>
               </div>
-
               <% } %>
             </div>
           </div>
         </div>
       </div>
     </main>
-
-    <!-- FOOTER -->
     <footer id="footer"></footer>
-
-    <!-- ionicon link -->
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
     ></script>
-
     <script
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
-
     <script src="/assets/js/script.js"></script>
-
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

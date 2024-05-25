@@ -2,13 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Based Application ElecSpectra</title>
+    <title>Admin Dashboard</title>
 
-    <!-- - custom css link-->
-
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/admin-styles.css" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -17,519 +14,289 @@
       crossorigin="anonymous"
     />
   </head>
-
   <body>
-    <!--Header Content-->
-    <header id="header"></header>
-
-    <!-- Navbar Desktop menu -->
-    <nav id="navbar" class="desktop-navigation-menu"></nav>
-
-    <div class="container">
-      <h3>Admin Page</h3>
-      <div class="manage-btn">
-        <button class="add-product-btn">Add New Product</button>
-        <button class="manage-product-btn">Manage Product</button>
-        <button class="manage-review-btn">Manage Review</button>
-      </div>
+    <div class="sidebar">
+      <h2>Admin Dashboard</h2>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#addProduct">Add Product</a></li>
+        <li><a href="#products">Product List</a></li>
+        <li><a href="#reviews">Review List</a></li>
+        <li><a href="#orders">Order List</a></li>
+        <li><a href="/logout" id="logout">Logout</a></li>
+      </ul>
     </div>
+    <div class="main-content">
+      <header>
+        <h1>Welcome, Admin</h1>
+      </header>
 
-    <!-- Main -->
-    <main>
-      <!-- BANNER   -->
-      <div class="banner">
-        <div class="container">
-          <div id="carouselExampleIndicators" class="carousel slide">
-            <div class="carousel-indicators">
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to="1"
-                aria-label="Slide 2"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to="2"
-                aria-label="Slide 3"
-              ></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img
-                  src="./assets/images/banner-1.jpg"
-                  class="d-block w-100"
-                  alt="..."
-                />
-              </div>
-              <div class="carousel-item">
-                <img
-                  src="./assets/images/banner-2.jpg"
-                  class="d-block w-100"
-                  alt="..."
-                />
-              </div>
-              <div class="carousel-item">
-                <img
-                  src="./assets/images/banner-3.jpg"
-                  class="d-block w-100"
-                  alt="..."
-                />
-              </div>
-            </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-      </div>
+      <section id="home">
+        <h2>Dashboard Overview</h2>
+        <p>Content goes here...</p>
+      </section>
 
-      <!-- CATEGORY -->
-
-      <div class="category">
-        <div class="container">
-          <h2>Brand</h2>
-
-          <div class="category-item-container has-scrollbar">
-            <div class="category-item">
-              <div class="category-img-box">
-                <img
-                  src="./assets/images/brand/apple-logo.png"
-                  alt="apple logo"
-                  width="30"
-                  height="30"
-                />
-              </div>
-              <div class="category-content-box">
-                <div class="category-content-flex">
-                  <h3 class="category-item-title">Apple</h3>
-
-                  <p class="category-item-amount">This is apple</p>
-                </div>
-
-                <a href="#" class="category-btn">Shop now</a>
-              </div>
+      <section id="addProduct" class="hidden">
+        <h2>Add product</h2>
+        <form
+          action="/product/add"
+          method="POST"
+          id="add-product-form"
+          enctype="multipart/form-data"
+        >
+          <div class="form-left">
+            <div class="form-group">
+              <label for="name">Product Name:</label>
+              <input type="text" id="name" name="name" required />
             </div>
 
-            <div class="category-item">
-              <div class="category-img-box">
-                <img
-                  src="./assets/images/brand/smasung-logo.png"
-                  alt="samsung logo"
-                  width="30"
-                  height="30"
-                />
-              </div>
-
-              <div class="category-content-box">
-                <div class="category-content-flex">
-                  <h3 class="category-item-title">Samsung</h3>
-
-                  <p class="category-item-amount">This is samsung</p>
-                </div>
-
-                <a href="#" class="category-btn">Shop now</a>
-              </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea id="description" name="description" required></textarea>
             </div>
 
-            <div class="category-item">
-              <div class="category-img-box">
-                <img
-                  src="./assets/images/brand/lg-logo.png"
-                  alt="lg logo"
-                  width="30"
-                  height="30"
-                />
-              </div>
-
-              <div class="category-content-box">
-                <div class="category-content-flex">
-                  <h3 class="category-item-title">LG</h3>
-
-                  <p class="category-item-amount">This is LG</p>
-                </div>
-
-                <a href="#" class="category-btn">Shop now</a>
-              </div>
+            <div class="form-group">
+              <label for="price">Price:</label>
+              <input type="number" id="price" name="price" required />
             </div>
 
-            <div class="category-item">
-              <div class="category-img-box">
-                <img
-                  src="./assets/images/brand/huawei-logo.png"
-                  alt="huawei logo"
-                  width="30"
-                  height="30"
-                />
-              </div>
+            <div class="form-group">
+              <label for="brand">Brand:</label>
+              <input type="text" id="brand" name="brand" required />
+            </div>
 
-              <div class="category-content-box">
-                <div class="category-content-flex">
-                  <h3 class="category-item-title">Huawei</h3>
+            <div class="form-group">
+              <label for="add-category">Category:</label>
+              <select id="add-category" name="category" required>
+                <option value="Mobile">Mobile</option>
+                <option value="TV">TV</option>
+                <option value="Tablet">Tablet</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Wearable">Wearable</option>
+                <option value="Camera">Camera</option>
+                <option value="Accessories">Accessories</option>
+              </select>
+            </div>
 
-                  <p class="category-item-amount">This is huawei</p>
-                </div>
-
-                <a href="#" class="category-btn">Shop now</a>
-              </div>
+            <p>specifications</p>
+            <div class="form-group">
+              <label for="display">display:</label>
+              <input type="text" id="display" name="display" required />
+            </div>
+            <div class="form-group">
+              <label for="processor">processor:</label>
+              <input type="text" id="processor" name="processor" required />
             </div>
           </div>
 
-          <div class="category-item-container has-scrollbar">
-            <div class="category-item">
-              <div class="category-img-box">
-                <img
-                  src="./assets/images/brand/Sony-logo.png"
-                  alt="sony logo"
-                  width="30"
-                  height="30"
-                />
-              </div>
-              <div class="category-content-box">
-                <div class="category-content-flex">
-                  <h3 class="category-item-title">Sony</h3>
-
-                  <p class="category-item-amount">This is SONY</p>
-                </div>
-
-                <a href="#" class="category-btn">Shop now</a>
-              </div>
+          <div class="form-right">
+            <div class="form-group">
+              <label for="ram">ram:</label>
+              <input type="text" id="ram" name="ram" required />
+            </div>
+            <div class="form-group">
+              <label for="storage">storage:</label>
+              <input type="text" id="storage" name="storage" required />
+            </div>
+            <div class="form-group">
+              <label for="graphics">graphics:</label>
+              <input
+                type="text"
+                type="text"
+                id="graphics"
+                name="graphics"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="battery">battery:</label>
+              <input type="text" id="battery" name="battery" required />
             </div>
 
-            <div class="category-item">
-              <div class="category-img-box">
-                <img
-                  src="./assets/images/brand/hp-logo.png"
-                  alt="hp logo"
-                  width="30"
-                  height="30"
-                />
-              </div>
-
-              <div class="category-content-box">
-                <div class="category-content-flex">
-                  <h3 class="category-item-title">HP</h3>
-
-                  <p class="category-item-amount">This is HP</p>
-                </div>
-
-                <a href="#" class="category-btn">Shop now</a>
-              </div>
+            <div class="form-group">
+              <label for="image">Image:</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                required
+                accept="image/*"
+              />
             </div>
-
-            <div class="category-item">
-              <div class="category-img-box">
-                <img
-                  src="./assets/images/brand/dell-logo.png"
-                  alt="dell logo"
-                  width="30"
-                  height="30"
-                />
-              </div>
-
-              <div class="category-content-box">
-                <div class="category-content-flex">
-                  <h3 class="category-item-title">Dell</h3>
-
-                  <p class="category-item-amount">This is Dell</p>
-                </div>
-
-                <a href="#" class="category-btn">Shop now</a>
-              </div>
+            <div class="form-group">
+              <label for="stock">Stock Quantity:</label>
+              <input type="number" id="stock" name="stock" required />
             </div>
-
-            <div class="category-item">
-              <div class="category-img-box">
-                <img
-                  src="./assets/images/brand/logitech-logo.png"
-                  alt="logitech logo"
-                  width="30"
-                  height="30"
-                />
-              </div>
-
-              <div class="category-content-box">
-                <div class="category-content-flex">
-                  <h3 class="category-item-title">Logitech</h3>
-
-                  <p class="category-item-amount">This is Logitech</p>
-                </div>
-
-                <a href="#" class="category-btn">Shop now</a>
-              </div>
+            <div class="form-group">
+              <label for="tag">Tag:</label>
+              <input type="text" id="tag" name="tag" required />
+            </div>
+            <div class="form-btn">
+              <button type="submit">Save</button>
+              <button type="button">Cancel</button>
             </div>
           </div>
+        </form>
+      </section>
+
+      <!-- Product List -->
+      <section id="products" class="hidden">
+        <h2>Product List</h2>
+        <div class="filters">
+          <label for="filter-category">Category:</label>
+          <select id="filter-category">
+            <option value="">All</option>
+            <option value="Mobile">Mobile</option>
+            <option value="TV">TV</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Wearable">Wearable</option>
+            <option value="Camera">Camera</option>
+            <option value="Accessories">Accessories</option>
+          </select>
+
+          <label for="filter-brand">Brand:</label>
+          <select id="filter-brand">
+            <option value="">All</option>
+            <option value="Apple">Apple</option>
+            <option value="Samsung">Samsung</option>
+            <option value="LG">LG</option>
+            <option value="Huawei">Huawei</option>
+            <option value="Sony">Sony</option>
+            <option value="Lenovo">Lenovo</option>
+            <option value="Dell">Dell</option>
+            <option value="Logitech">Logitech</option>
+          </select>
+
+          <label for="sort-price">Sort by Price:</label>
+          <select id="sort-price">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+
+          <button id="filter-btn">Filter</button>
         </div>
 
-        <!--PRODUCT FEATURED-->
-        <div class="container">
-          <div class="product-featured">
-            <h2 class="title">Deal of the day</h2>
-            <div class="showcase-wrapper has-scrollbar">
-              <div class="showcase-container">
-                <div class="showcase">
-                  <div class="showcase-banner">
-                    <img
-                      src="./assets/images/products/samsungPC.jpeg"
-                      alt="Rose Gold diamonds Earring"
-                      class="showcase-img"
-                    />
-                  </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Num</th>
+              <th>Category</th>
+              <th>Brand</th>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
 
-                  <div class="showcase-content">
-                    <div class="showcase-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star-outline"></ion-icon>
-                      <ion-icon name="star-outline"></ion-icon>
-                    </div>
+      <!-- Review List -->
+      <section id="reviews" class="hidden">
+        <h2>Review List</h2>
+        <div class="filters">
+          <label for="review-filter-star-rate">Star Rate:</label>
+          <select id="review-filter-star-rate">
+            <option value="">All</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
 
-                    <h3 class="showcase-title">
-                      <a href="#" class="showcase-title">Samsung TV 32 inch</a>
-                    </h3>
-
-                    <p class="showcase-desc">
-                      Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor
-                      dolor sit amet consectetur Lorem ipsum dolor
-                    </p>
-
-                    <div class="price-box">
-                      <p class="price">$1990.00</p>
-                    </div>
-
-                    <button class="add-cart-btn">add to cart</button>
-
-                    <div class="showcase-status">
-                      <div class="wrapper">
-                        <p>already sold: <b>15</b></p>
-
-                        <p>available: <b>40</b></p>
-                      </div>
-
-                      <div class="showcase-status-bar"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div>
+            <label for="review-date-filter">Date:</label>
+            <input type="date" id="review-date-filter" />
           </div>
+          <button id="review-filter-btn">Filter</button>
 
-          <!--PRODUCT GRID-->
-
-          <div class="product-main">
-            <h2 class="title">New Products</h2>
-
-            <div class="product-grid">
-              <!-- product card -->
-              <div class="showcase">
-                <div class="showcase-banner">
-                  <img
-                    src="./assets/images/products/camera.png"
-                    alt="Mens Winter Leathers Jackets"
-                    width="300"
-                    class="product-img default"
-                  />
-                  <img
-                    src="./assets/images/products/camera.png"
-                    alt="Mens Winter Leathers Jackets"
-                    width="300"
-                    class="product-img hover"
-                  />
-                </div>
-
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">camera</a>
-
-                  <a href="#">
-                    <h3 class="showcase-title">Pink camera</h3>
-                  </a>
-
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-
-                  <div class="price-box">
-                    <p class="price">$48.00</p>
-                    <del>$75.00</del>
-                  </div>
-                </div>
-              </div>
-
-              <div class="showcase">
-                <div class="showcase-banner">
-                  <img
-                    src="./assets/images/products/headphone.jpeg"
-                    alt="Pure Garment Dyed Cotton Shirt"
-                    class="product-img default"
-                    width="300"
-                  />
-                  <img
-                    src="./assets/images/products/headphone.jpeg"
-                    alt="Pure Garment Dyed Cotton Shirt"
-                    class="product-img hover"
-                    width="300"
-                  />
-
-                  <p class="showcase-badge angle black">sale</p>
-
-                  <div class="showcase-actions"></div>
-                </div>
-
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">headphone</a>
-
-                  <h3>
-                    <a href="#" class="showcase-title">Black headphone</a>
-                  </h3>
-
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-
-                  <div class="price-box">
-                    <p class="price">$45.00</p>
-                    <del>$56.00</del>
-                  </div>
-                </div>
-              </div>
-
-              <div class="showcase">
-                <div class="showcase-banner">
-                  <img
-                    src="./assets/images/products/joyStick.jpeg"
-                    alt="Black Floral Wrap Midi Skirt"
-                    class="product-img default"
-                    width="300"
-                  />
-                  <img
-                    src="./assets/images/products/joyStick.jpeg"
-                    alt="Black Floral Wrap Midi Skirt"
-                    class="product-img hover"
-                    width="300"
-                  />
-
-                  <p class="showcase-badge angle pink">new</p>
-                </div>
-
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Joystick</a>
-
-                  <h3>
-                    <a href="#" class="showcase-title">Playstation Joystick</a>
-                  </h3>
-
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                  </div>
-
-                  <div class="price-box">
-                    <p class="price">$25.00</p>
-                    <del>$35.00</del>
-                  </div>
-                </div>
-              </div>
-
-              <div class="showcase">
-                <div class="showcase-banner">
-                  <img
-                    src="./assets/images/products/tablets.png"
-                    alt="Smart watche Vital Plus"
-                    class="product-img default"
-                    width="300"
-                  />
-                  <img
-                    src="./assets/images/products/tablets.png"
-                    alt="Smart watche Vital Plus"
-                    class="product-img hover"
-                    width="300"
-                  />
-                </div>
-
-                <div class="showcase-content">
-                  <a href="#" class="showcase-category">Smart tablet</a>
-
-                  <h3>
-                    <a href="#" class="showcase-title">Smart tablet</a>
-                  </h3>
-
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-
-                  <div class="price-box">
-                    <p class="price">$100.00</p>
-                    <del>$120.00</del>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div>
+            <label for="review-email-filter">User Email:</label>
+            <input
+              type="text"
+              id="review-email-filter"
+              placeholder="Enter user email"
+            />
           </div>
+          <button id="review-search-btn">Search User</button>
         </div>
-      </div>
-    </main>
 
-    <!-- FOOTER -->
-    <footer id="footer"></footer>
+        <table>
+          <thead>
+            <tr>
+              <th>User Number</th>
+              <th>Email</th>
+              <th>Product</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Star Rate</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
 
-    <!-- ionicon link -->
+      <!-- Order List -->
+      <section id="orders" class="hidden">
+        <h2>Order List</h2>
+        <div class="filters">
+          <div>
+            <label for="order-email-filter">User Email:</label>
+            <input
+              type="text"
+              id="order-email-filter"
+              placeholder="Enter user email"
+            />
+          </div>
+          <div>
+            <label for="order-date-filter">Date:</label>
+            <input type="date" id="order-date-filter" />
+          </div>
+          <button id="order-filter-btn">Filter</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Order Number</th>
+              <th>User Email</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>asdf@gmail.com</td>
+              <td>Iphone</td>
+              <td>5</td>
+              <td>1500</td>
+              <td>2024-05-24</td>
+              <td><button class="send-btn">Send</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
     ></script>
-
     <script
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
 
-    <script src="./assets/js/script.js"></script>
-
+    <script src="/assets/js/admin.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

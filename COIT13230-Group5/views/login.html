@@ -36,13 +36,19 @@
               <label for="password">Password:</label>
               <input type="password" id="password" name="password" required />
             </div>
-            <p class="error-msg visible"></p>
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="role" name="role" value="admin" />
+                Admin
+              </label>
+            </div>
+            <p class="error-msg"></p>
+            <div id="success-msg" class="success-msg hidden">
+              <!-- Tick mark icon -->
+              <span class="message-text"></span>
+            </div>
             <button class="login-btn" type="submit">Login</button>
           </form>
-          <p>Or login with:</p>
-          <div class="social-login">
-            <button class="google-login">Google</button>
-          </div>
           <p>Don't have an account? <a href="/signupPage">Sign up</a></p>
         </div>
       </div>

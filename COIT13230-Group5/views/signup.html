@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Based Application ElecSpectra</title>
 
-    <!-- - custom css link-->
-
+    <!-- Custom CSS links -->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/signup.css" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -22,15 +21,22 @@
   <body>
     <img src="./assets/images/logo/logo.png" alt="" class="sign-ip-logo" />
 
-    <!-- <nav id="navbar" class="desktop-navigation-menu"></nav> -->
-    <!--Sign up Form-->
-
+    <!-- Sign up Form -->
     <div class="signup-form">
       <h3>Create Account</h3>
+      <div id="success-msg" class="success-msg hidden">
+        <!-- Tick mark icon -->
+        <span class="message-text"></span>
+      </div>
       <form action="/user/signup" method="POST" id="signupForm">
         <div class="form-group">
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" required />
+          <span
+            id="emailError"
+            class="text-danger"
+            style="display: none"
+          ></span>
         </div>
 
         <div class="form-group">
@@ -69,6 +75,9 @@
             name="confirmPassword"
             required
           />
+          <span id="passwordError" class="text-danger" style="display: none"
+            >Passwords do not match</span
+          >
         </div>
 
         <div class="form-group">
@@ -92,18 +101,18 @@
 
     <footer id="footer"></footer>
 
-    <!-- ionicon link -->
+    <!-- Ionicon link -->
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
     ></script>
-
     <script
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
 
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/signup.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
