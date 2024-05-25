@@ -100,6 +100,14 @@
   margin-bottom: 10px;
 }
 
+.write-form {
+  display: none;
+}
+
+.write-form visible {
+  display: block;
+}
+
 .review-header {
   display: flex;
   justify-content: space-between;
