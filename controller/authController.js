@@ -5,6 +5,7 @@ const Utilities = require('../utils/utils');
 const jwt = require('jsonwebtoken');
 const sendEmail = require('../utils/email');
 const crypto = require('crypto');
+
 exports.signUp = async (req, res, next) => {
   const {
     email,
@@ -35,7 +36,7 @@ exports.signUp = async (req, res, next) => {
 
     utils.sendResponse(200, 'success', token, res);
   } catch (err) {
-    next(new AppError(err.message, 404));
+    return next(new AppError(err.message, 404));
   }
 };
 

@@ -19,6 +19,13 @@ const wishListSchema = new mongoose.Schema({
   updatedAt: Date,
 });
 
+wishListSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'product',
+  });
+  next();
+});
+
 const wishListModel = mongoose.model('wishlist', wishListSchema);
 
 module.exports = wishListModel;
