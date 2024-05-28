@@ -7,6 +7,7 @@ const reviewRouter = require('./routes/reviewRouter');
 const categoryRouter = require('./routes/categoryRoutes');
 const wishlistRouter = require('./routes/wishListRoutes');
 const cartRouter = require('./routes/cartRoutes');
+const orderRouter = require('./routes/orderRoutes');
 const app = express();
 const path = require('path');
 
@@ -35,6 +36,7 @@ app.use('/review', reviewRouter);
 app.use('/category', categoryRouter);
 app.use('/wishlist', wishlistRouter);
 app.use('/cart', cartRouter);
+app.use('/order', orderRouter);
 
 // Global Error handling middleware..
 app.use((err, req, res, next) => {
