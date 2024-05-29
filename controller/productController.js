@@ -99,6 +99,24 @@ exports.getProduct = async (req, res, next) => {
   }
 };
 
+exports.updateProduct = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const product = await productModel.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        data: product,
+      },
+    });
+  } catch (err) {
+    return next(new AppError(err.message, 404));
+  }
+};
+
 exports.deleteProduct = async (req, res, next) => {
   const { id } = req.params;
   try {

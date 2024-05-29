@@ -1,13 +1,12 @@
 const express = require('express');
-const authController = require('../controller/authController');
-const orderController = require('../controller/orderController');
 
+const orderController = require('../controller/orderController');
+const authController = require('../controller/authController');
 const orderRouter = express.Router();
 
-orderRouter.get(
-  '/checkout-session/:productID',
-  authController.protected,
-  orderController.getCheckoutSession
-);
+orderRouter
+  .route('/')
+  .post(authController.protected, orderController.createOrder)
+  .get(orderController.getAllOrder);
 
 module.exports = orderRouter;

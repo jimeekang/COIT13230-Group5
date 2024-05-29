@@ -17,6 +17,7 @@ productRouter
 productRouter
   .route('/:id')
   .get(productController.getProduct)
-  .delete(productController.deleteProduct);
+  .delete(productController.deleteProduct)
+  .patch(productController.updateProduct);
 
 module.exports = productRouter;
