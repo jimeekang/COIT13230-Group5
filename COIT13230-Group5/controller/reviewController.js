@@ -54,9 +54,9 @@ exports.deleteReview = async (req, res, next) => {
     console.log(id);
     const deleted = await reviewModel.findByIdAndDelete({ _id: id });
 
-    res.status(204).json({
+    res.status(200).json({
       status: 'success',
-      data: null,
+      data: deleted,
     });
   } catch (err) {
     return next(new AppError(err.message, 404));
