@@ -1,0 +1,60 @@
+/* Add your custom CSS styles here */
+.container {
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.order-summary {
+  margin-bottom: 20px;
+}
+
+.order-summary h3 {
+  margin-bottom: 10px;
+}
+
+.order-items table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.order-items th,
+.order-items td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-total p {
+  margin: 10px 0;
+}
+
+.order-actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mainBtn,
+.orderBtn {
+  padding: 8px 12px;
+  border-radius: var(--border-radius-md);
+  color: var(--white);
+}
+
+.mainBtn {
+  background: var(--dark-red);
+  transition: var(--transition-timing);
+}
+
+.orderBtn {
+  background: var(--light-blue);
+  transition: var(--transition-timing);
+}
+
+.mainBtn:hover,
+.orderBtn:hover {
+  background: var(--orange);
+  transform: scale(1.1);
+}

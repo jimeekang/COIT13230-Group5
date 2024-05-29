@@ -1,9 +1,58 @@
 /* General Styles */
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
+}
+
+.success-msg {
+  display: none;
+  padding: 15px;
+  margin: 20px 0;
+  border: 1px solid #4caf50;
+  background-color: #dff0d8;
+  color: #3c763d;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #3498db, #2c3e50);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.header-content h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .sidebar {
@@ -31,6 +80,49 @@ body {
 .sidebar ul li a {
   color: white;
   text-decoration: none;
+}
+.home-title {
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+
+/* Dashboard card */
+.dashboard-cards,
+.dashboard-cards-under {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 22%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.card-content p {
+  margin: 5px 0 0;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .main-content {
@@ -74,18 +166,21 @@ section {
 }
 
 /* Add Product Section */
-#addProduct {
+#addProduct,
+#editProduct {
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#addProduct h2 {
+#addProduct h2,
+#editProduct h2 {
   text-align: center;
   color: #333;
 }
 
-#add-product-form {
+#add-product-form,
+#edit-product-form {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

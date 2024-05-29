@@ -36,27 +36,6 @@ input[type='password'] {
   border-radius: 5px;
 }
 
-.error-msg {
-  color: red;
-  display: none;
-}
-
-.success-msg {
-  display: none;
-  padding: 15px;
-  margin: 20px 0;
-  border: 1px solid #4caf50;
-  background-color: #dff0d8;
-  color: #3c763d;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-}
-
-.hidden {
-  display: none;
-}
-
 .visible {
   display: flex;
 }
