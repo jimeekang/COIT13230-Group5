@@ -1,0 +1,90 @@
+<section id="editProduct" class="hidden">
+  <h2>Add product</h2>
+  <form
+    action=""
+    method=""
+    id="edit-product-form"
+    enctype="multipart/form-data"
+  >
+    <div class="form-left">
+      <div class="form-group">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required />
+      </div>
+
+      <div class="form-group">
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" name="brand" required />
+      </div>
+
+      <div class="form-group">
+        <label for="add-category">Category:</label>
+        <select id="add-category" name="category" required>
+          <option value="Mobile">Mobile</option>
+          <option value="TV">TV</option>
+          <option value="Tablet">Tablet</option>
+          <option value="Laptop">Laptop</option>
+          <option value="Wearable">Wearable</option>
+          <option value="Camera">Camera</option>
+          <option value="Accessories">Accessories</option>
+        </select>
+      </div>
+
+      <p>specifications</p>
+      <div class="form-group">
+        <label for="display">display:</label>
+        <input type="text" id="display" name="display" required />
+      </div>
+      <div class="form-group">
+        <label for="processor">processor:</label>
+        <input type="text" id="processor" name="processor" required />
+      </div>
+    </div>
+
+    <div class="form-right">
+      <div class="form-group">
+        <label for="ram">ram:</label>
+        <input type="text" id="ram" name="ram" required />
+      </div>
+      <div class="form-group">
+        <label for="storage">storage:</label>
+        <input type="text" id="storage" name="storage" required />
+      </div>
+      <div class="form-group">
+        <label for="graphics">graphics:</label>
+        <input type="text" type="text" id="graphics" name="graphics" required />
+      </div>
+      <div class="form-group">
+        <label for="battery">battery:</label>
+        <input type="text" id="battery" name="battery" required />
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" required accept="image/*" />
+      </div>
+      <div class="form-group">
+        <label for="stock">Stock Quantity:</label>
+        <input type="number" id="stock" name="stock" required />
+      </div>
+      <div class="form-group">
+        <label for="tag">Tag:</label>
+        <input type="text" id="tag" name="tag" required />
+      </div>
+      <div class="form-btn">
+        <button type="submit">Save</button>
+        <button type="button">Cancel</button>
+      </div>
+    </div>
+  </form>
+</section>

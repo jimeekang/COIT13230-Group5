@@ -1,0 +1,158 @@
+[
+  {
+    "userName": "john_doe",
+    "email": "john@example.com",
+    "password": "hashed_password_1",
+    "fullName": "John Doe",
+    "gender": "male",
+    "address": "123 Main St, Anytown, USA",
+    "phoneNumber": "+1234567890",
+    "registrationDate": "2024-04-15T12:00:00Z",
+    "role": "user",
+    "accountStatus": "active"
+  },
+  {
+    "userName": "jane_smith",
+    "email": "jane@example.com",
+    "password": "hashed_password_2",
+    "fullName": "Jane Smith",
+    "gender": "female",
+    "address": "456 Elm St, Othertown, USA",
+    "phoneNumber": "+1987654321",
+    "registrationDate": "2024-04-14T11:30:00Z",
+    "role": "user",
+    "accountStatus": "active"
+  },
+  {
+    "userName": "alex_jones",
+    "email": "alex@example.com",
+    "password": "hashed_password_3",
+    "fullName": "Alex Jones",
+    "gender": "male",
+    "address": "789 Oak St, Anothertown, USA",
+    "phoneNumber": "+1122334455",
+    "registrationDate": "2024-04-13T10:45:00Z",
+    "role": "user",
+    "accountStatus": "active"
+  },
+  {
+    "userName": "emily_davis",
+    "email": "emily@example.com",
+    "password": "hashed_password_4",
+    "fullName": "Emily Davis",
+    "gender": "female",
+    "address": "321 Pine St, Yetanothertown, USA",
+    "phoneNumber": "+9988776655",
+    "registrationDate": "2024-04-12T09:15:00Z",
+    "role": "user",
+    "accountStatus": "active"
+  },
+  {
+    "userName": "michael_wilson",
+    "email": "michael@example.com",
+    "password": "hashed_password_5",
+    "fullName": "Michael Wilson",
+    "gender": "male",
+    "address": "567 Maple St, Townsville, USA",
+    "phoneNumber": "+1122334455",
+    "registrationDate": "2024-04-11T08:30:00Z",
+    "role": "user",
+    "accountStatus": "active"
+  },
+  {
+    "userName": "sarah_brown",
+    "email": "sarah@example.com",
+    "password": "hashed_password_6",
+    "fullName": "Sarah Brown",
+    "gender": "female",
+    "address": "901 Walnut St, Cityville, USA",
+    "phoneNumber": "+3344556677",
+    "registrationDate": "2024-04-10T07:45:00Z",
+    "role": "user",
+    "accountStatus": "active"
+  },
+  {
+    "userName": "adam_jackson",
+    "email": "adam@example.com",
+    "password": "hashed_password_7",
+    "fullName": "Adam Jackson",
+    "gender": "male",
+    "address": "345 Birch St, Villagetown, USA",
+    "phoneNumber": "+7788990011",
+    "registrationDate": "2024-04-09T06:30:00Z",
+    "role": "user",
+    "accountStatus": "active"
+  },
+  {
+    "userName": "olivia_miller",
+    "email": "olivia@example.com",
+    "password": "hashed_password_8",
+    "fullName": "Olivia Miller",
+    "gender": "female",
+    "address": "678 Cedar St, Hamletville, USA",
+    "phoneNumber": "+1122334455",
+    "registrationDate": "2024-04-08T05:45:00Z",
+    "role": "user",
+    "accountStatus": "active"
+  },
+  {
+    "userName": "ethan_clark",
+    "email": "ethan@example.com",
+    "password": "hashed_password_9",
+    "fullName": "Ethan Clark",
+    "gender": "male",
+    "address": "234 Oak St, Hamletville, USA",
+    "phoneNumber": "+9988776655",
+    "registrationDate": "2024-04-07T04:15:00Z",
+    "role": "user",
+    "accountStatus": "active"
+  },
+  {
+    "userName": "ava_lee",
+    "email": "ava@example.com",
+    "password": "hashed_password_10",
+    "fullName": "Ava Lee",
+    "gender": "female",
+    "address": "890 Elm St, Citytown, USA",
+    "phoneNumber": "+1122334455",
+    "registrationDate": "2024-04-06T03:30:00Z",
+    "role": "user",
+    "accountStatus": "active"
+  },
+
+  {
+    "name": "Smartphone X",
+    "description": "The latest flagship smartphone with advanced features.",
+    "price": 899.99,
+    "brand": "TechCorp",
+    "category": "Smartphones",
+    "specifications": {
+      "screen_size": "6.5 inches",
+      "processor": "Octa-core Snapdragon 888",
+      "ram": "8 GB",
+      "storage": "128 GB",
+      "camera": "Quad-camera setup (48MP main)",
+      "battery": "5000 mAh"
+    },
+    "images": "https://example.com/images/smartphone_x_1.jpg",
+
+    "stock": 100
+  },
+  {
+    "name": "Laptop Pro",
+    "description": "Powerful laptop for professionals and gamers.",
+    "price": 1499.99,
+    "brand": "TechGear",
+    "category": "Laptops",
+    "specifications": {
+      "display": "15.6 inches FHD",
+      "processor": "Intel Core i7-10750H",
+      "ram": "16 GB DDR4",
+      "storage": "512 GB SSD",
+      "graphics": "NVIDIA GeForce RTX 3060",
+      "battery": "6-cell 90Wh"
+    },
+    "images": "https://example.com/images/laptop_pro_1.jpg",
+    "stock": 50
+  }
+]

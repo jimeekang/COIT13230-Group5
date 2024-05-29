@@ -1,0 +1,125 @@
+.cart-all_delete-btn {
+  margin: var(--margin-top) 0;
+  padding: 7px 14px;
+  color: var(--sky-blue);
+  font-weight: var(--weight-500);
+  text-transform: uppercase;
+  border-radius: var(--border-radius-md);
+  transition: var(--transition-timing);
+  float: right;
+}
+
+.cart-all_delete-btn:hover {
+  color: var(--white);
+  background-color: var(--sky-blue);
+  transform: scale(1.05);
+}
+
+.cart-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+table tr td:last-child,
+table tr th:last-child {
+  padding-left: 5%;
+  border-bottom: none;
+  text-align: center;
+}
+
+.item-delete-btn {
+  border-radius: var(--border-radius-sm);
+  color: var(--dark-red);
+  transition: var(--transition-timing);
+  font-size: var(--fs-5);
+}
+
+.item-delete-btn:hover {
+  transform: scale(1.05);
+  font-weight: var(--weight-500);
+}
+
+.shopping-inform {
+  margin: 48px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+.shopping-inform h3 {
+  margin-bottom: 12px;
+}
+
+.coupon {
+  margin: var(--margin-top) 0;
+}
+
+.coupon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coupon-input {
+  height: 32px;
+  font-size: var(--fs-6);
+  border: 0;
+  border-radius: var(--border-radius-sm);
+  outline: none;
+  padding-left: 10px;
+  background: var(--cultured);
+}
+
+.coupon-btn {
+  padding: 7px 10px;
+  margin-left: 12px;
+  color: var(--sky-blue);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-timing);
+  font-size: var(--fs-5);
+  font-weight: var(--weight-500);
+}
+
+.coupon-btn:hover {
+  color: var(--dark-blue);
+
+  transform: rotate(5deg);
+}
+
+.summary {
+  margin-top: 32px;
+}
+
+.summary p {
+  margin-bottom: var(--fs-5);
+}
+.summary p span {
+  color: var(--dark-blue);
+  font-weight: var(--weight-600);
+}
+.summary-btn {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.continue-btn,
+.checkout-btn,
+.cancel-btn {
+  padding: 7px 10px;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  border-radius: var(--border-radius-sm);
+  margin-right: 12px;
+  transition: var(--transition-timing);
+  font-weight: var(--weight-500);
+}
+
+.continue-btn:hover,
+.checkout-btn:hover,
+.cancel-btn:hover {
+  background: var(--orange);
+  transform: scale(1.05);
+}

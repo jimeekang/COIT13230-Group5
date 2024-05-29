@@ -1,0 +1,34 @@
+/* Add your custom CSS styles here */
+.container {
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.order-summary {
+  margin-bottom: 20px;
+}
+
+.order-summary h3 {
+  margin-bottom: 10px;
+}
+
+.order-items table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.order-items th,
+.order-items td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-total p {
+  margin: 10px 0;
+}
+
+.order-actions .btn {
+  margin-right: 10px;
+}
