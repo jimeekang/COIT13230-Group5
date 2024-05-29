@@ -5,6 +5,7 @@ const userRouter = require('./routes/userRouter');
 const productRouter = require('./routes/productRouter');
 const reviewRouter = require('./routes/reviewRouter');
 const categoryRouter = require('./routes/categoryRoutes');
+const orderRouter = require('./routes/orderRoutes');
 const cookieParser = require('cookie-parser');
 
 const path = require('path');
@@ -38,6 +39,7 @@ app.use('/user', userRouter);
 app.use('/product', productRouter);
 app.use('/review', reviewRouter);
 app.use('/category', categoryRouter);
+app.use('/order', orderRouter);
 
 // Global Error handling middleware..
 app.use((err, req, res, next) => {
@@ -83,12 +85,16 @@ app.get('/updateProfilePage', (req, res) => {
 
 /* Cart */
 app.get('/cart', (req, res) => {
-  res.render('cart.html'); //tours is undefined
+  res.render('cart.html');
 });
 
 /* Payment */
 app.get('/payment', (req, res) => {
-  res.render('shipping.html'); //tours is undefined
+  res.render('shipping.html');
+});
+
+app.get('/orderDetail', (req, res) => {
+  res.render('orderDetails.html');
 });
 
 /* Admin */
