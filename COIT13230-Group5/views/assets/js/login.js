@@ -27,7 +27,6 @@ $(document).ready(function () {
               localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
               const redirectUrl = userRole === 'admin' ? '/admin' : '/main';
-              window.location.href = redirectUrl;
 
               const successMessage = `Login successful! Welcome, ${userName}.`;
               $('#success-msg .message-text').text(successMessage);
@@ -35,7 +34,7 @@ $(document).ready(function () {
 
               setTimeout(function () {
                 window.location.href = redirectUrl;
-              }, 3000);
+              }, 2000);
             } else {
               showError('Role mismatch. Access denied.');
             }

@@ -27,12 +27,6 @@ $(document).ready(function () {
     const password = $('#password').val();
     const confirmPassword = $('#confirmPassword').val();
 
-    if (password !== confirmPassword) {
-      $('#passwordError').show(); // Show the password error message
-    } else {
-      $('#passwordError').hide(); // Hide the password error message
-    }
-
     $.ajax({
       url: '/user/updateProfile',
       method: 'PATCH',
@@ -41,7 +35,12 @@ $(document).ready(function () {
       },
       data: JSON.stringify({ address, phoneNumber }),
       success: function (data) {
-        $('#successModal').modal('show');
+        if (password !== confirmPassword) {
+          $('#passwordError').show();
+        } else {
+          $('#passwordError').hide();
+          $('#successModal').modal('show');
+        }
       },
       error: function (xhr, status, error) {
         alert(

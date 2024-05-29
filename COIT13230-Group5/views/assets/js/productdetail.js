@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const selectedQuantity = document.getElementById('qty').value;
     if (selectedQuantity === '0') {
-      window.alert('Please select quantity.');
+      $('.error-msg-addCart')
+        .addClass('visible')
+        .text('Please select quantity.');
       return;
     }
 
@@ -38,10 +40,16 @@ document.addEventListener('DOMContentLoaded', function () {
       // Store the updated products array back into localStorage
       localStorage.setItem('products', JSON.stringify(products));
 
-      window.alert('Product added to cart successfully.');
-      window.location.href = '/cart';
+      $('#success-msg-addCart').removeClass('hidden').addClass('visible');
+      $('#success-msg-addCart .message-text-addCart').text(
+        'Your product successfully in the cart!'
+      );
+
+      setTimeout(function () {
+        window.location.href = '/cart';
+      }, 2000);
     } else {
-      alert('Please Login');
+      $('.error-msg-addCart').addClass('visible').text('Please Login');
     }
   });
 
@@ -52,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (token) {
         document.getElementById('writeReviewSection').style.display = 'block';
       } else {
-        alert('Please Login');
+        $('.error-msg-review').addClass('visible').text('Please Login');
       }
     });
 
@@ -116,7 +124,15 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         data: JSON.stringify(reviewData),
         success: function (result) {
-          alert('Review submitted successfully.');
+          // Show success message
+          $('#success-msg-review .message-text-review').text(
+            'Review submitted successfully.'
+          );
+          $('#success-msg-review').removeClass('hidden').addClass('visible');
+          setTimeout(function () {
+            $('#success-msg-review').removeClass('visible').addClass('hidden');
+          }, 1000);
+
           $('#reviewTitle').val('');
           $('#reviewDescription').val('');
           $('#starRating').val('');

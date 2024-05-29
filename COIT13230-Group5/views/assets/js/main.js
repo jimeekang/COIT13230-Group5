@@ -10,39 +10,38 @@ $(document).ready(function () {
       if (productGrid) {
         products.forEach((p) => {
           let showcase = `<div class="showcase">
-        <div class="showcase-banner">
-          <img
-            src=${p.image}
-            alt="Pure Garment Dyed Cotton Shirt"
-            class="product-img default"
-            width="300"
-          />
-          <img
-            src=${p.image}
-            alt="Pure Garment Dyed Cotton Shirt"
-            class="product-img hover"
-            width="300"
-          />
-          <div class="showcase-actions"></div>
-        </div>
-        <div class="showcase-content">
-        <a href="/product/${p._id}" class="showcase-category">${p.name}</a>
-          <h3>
-            <a href="/product/${p._id}" class="showcase-title">${p.name}</a>
-          </h3>
-          <div class="showcase-rating">
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star-outline"></ion-icon>
-            <ion-icon name="star-outline"></ion-icon>
+          <div class="showcase-banner">
+            <img
+              src=${p.image}
+              alt="Product Image"
+              class="product-img default"
+              width="300"
+            />
+            <img
+              src=${p.image}
+              alt="Product Image"
+              class="product-img hover"
+              width="300"
+            />
+            <div class="showcase-actions"></div>
           </div>
-          <div class="price-box">
-            <p class="price">$${p.price}</p>
-            <del>$56.00</del>
+          <div class="showcase-content">
+            <a href="/product/${p._id}" class="showcase-category">${p.name}</a>
+            <h3>
+              <a href="/product/${p._id}" class="showcase-title">${p.name}</a>
+            </h3>
+            <div class="showcase-rating">
+              ${Array.from({ length: 5 }, (v, i) =>
+                i < p.ratingAverage
+                  ? `<ion-icon name="star"></ion-icon>`
+                  : `<ion-icon name="star-outline"></ion-icon>`
+              ).join('')}
+            </div>
+            <div class="price-box">
+              <p class="price">$${p.price}</p>
+            </div>
           </div>
-        </div>
-      </div>`;
+        </div>`;
           productGrid.innerHTML += showcase; // Append showcase HTML to productGrid
         });
       } else {

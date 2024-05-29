@@ -2,11 +2,14 @@ $(document).ready(function () {
   $('#signupForm').on('submit', function (e) {
     e.preventDefault();
 
+    $('#emailError').hide().text('');
+    $('#passwordError').hide().text('');
+
     var password = $('#password').val();
     var confirmPassword = $('#confirmPassword').val();
 
     if (password !== confirmPassword) {
-      $('#passwordError').show();
+      $('#passwordError').show().text('Passwords do not match.');
     } else {
       $('#passwordError').hide();
 
@@ -18,12 +21,12 @@ $(document).ready(function () {
           console.log('Signup successful:', response);
           window.location.href = '/loginPage';
         },
-
         error: function (error) {
           console.log('Error response:', error);
 
           if (
             error.status === 400 &&
+            error.responseJSON &&
             error.responseJSON.error === 'Email already registered'
           ) {
             $('#emailError').show().text('This email is already registered.');
@@ -40,8 +43,8 @@ $(document).ready(function () {
       });
     }
   });
-});
 
-$('.cancel-btn').on('click', function () {
-  window.location.href = '/loginPage';
+  $('.cancel-btn').on('click', function () {
+    window.location.href = '/loginPage';
+  });
 });
