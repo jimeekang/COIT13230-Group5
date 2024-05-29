@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Based Application ElecSpectra</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/orderDetails.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <header id="header"></header>
+
+    <nav id="navbar" class="desktop-navigation-menu"></nav>
+
+    <main id="order-details">
+      <div class="container">
+        <h2>Order Details</h2>
+        <div class="order-summary">
+          <h3>Shipping Information</h3>
+          <p>Email: <span id="email"></span></p>
+          <p>Full Name: <span id="fullName"></span></p>
+          <p>Address: <span id="address"></span></p>
+          <p>Mobile: <span id="mobile"></span></p>
+        </div>
+
+        <div class="order-items">
+          <h3>Order Items</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody id="order-items-body"></tbody>
+          </table>
+        </div>
+
+        <div class="order-total">
+          <h3>Order Total</h3>
+          <p>Subtotal: <span id="subtotal"></span></p>
+          <p>Shipping Cost: <span id="shippingCost"></span></p>
+          <p>Total: <span id="totalCost"></span></p>
+        </div>
+
+        <div class="order-actions">
+          <button id="backToShop" class="mainBtn">Back to Shop</button>
+          <button id="confirmOrder" class="orderBtn">Confirm Order</button>
+        </div>
+      </div>
+    </main>
+    <footer id="footer"></footer>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script
+      src="https://kit.fontawesome.com/6e23c76e5a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./assets/js/script.js"></script>
+    <script type="module" src="./assets/js/orderDetail.js"></script>
+  </body>
+</html>
