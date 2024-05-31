@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Based Application ElecSpectra</title>
+
+    <!-- - custom css link-->
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/shipping-style.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <!--Header Content-->
+    <header id="header"></header>
+
+    <!-- Navbar Desktop menu -->
+    <nav id="navbar" class="desktop-navigation-menu"></nav>
+
+    <main id="shipping">
+      <form>
+        <div class="container">
+          <h2>Shipping Details</h2>
+
+          <div class="shipping-main">
+            <div class="shipping-left">
+              <h3>Personal Information</h3>
+              <div class="shipping-input">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  autocomplete="off"
+                  required
+                  placeholder="ddd@ddd.ddd"
+                />
+              </div>
+
+              <div class="shipping-input">
+                <label for="fullName">First Name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="fullName"
+                />
+              </div>
+
+              <div class="shipping-input">
+                <label for="address">Address</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  minlength="10"
+                  maxlength="255"
+                />
+              </div>
+
+              <div class="shipping-input">
+                <label for="mobile">Mobile</label>
+                <input type="num" id="mobile" name="mobile" />
+              </div>
+            </div>
+
+            <div class="shipping-middle">
+              <h3>Accepted Cards</h3>
+
+              <div class="shipping-input">
+                <label for="cardname">Name on Card</label>
+                <input
+                  type="text"
+                  id="cardname"
+                  name="cardname"
+                  placeholder="Name on Card"
+                  required
+                />
+              </div>
+
+              <div class="shipping-input">
+                <label for="ccnum">Credit card number</label>
+                <input
+                  type="text"
+                  id="ccnum"
+                  name="cardnumber"
+                  placeholder="1111 2222 3333 4444"
+                />
+              </div>
+
+              <div class="row">
+                <div class="shipping-input">
+                  <label for="expdate">Expire Date</label>
+                  <input
+                    type="text"
+                    id="expdate"
+                    name="expdate"
+                    placeholder="DD/MM/YYYY"
+                  />
+                </div>
+                <div class="shipping-input">
+                  <label for="cvv">CVV</label>
+                  <input type="text" id="cvv" name="cvv" placeholder="000" />
+                </div>
+              </div>
+
+              <div class="icon-container">
+                <i class="fa-brands fa-cc-visa" style="color: navy"></i>
+                <i class="fa-brands fa-cc-amex" style="color: blue"></i>
+                <i class="fa-brands fa-cc-mastercard" style="color: red"></i>
+                <i class="fa-brands fa-cc-discover" style="color: yellow"></i>
+              </div>
+            </div>
+
+            <div class="shipping-right">
+              <h3>Summary</h3>
+              <p>Subtotal: <span class="subtotal-span">$1500</span></p>
+              <p>Shipping Cost: <span class="shipping-cost-span">Free</span></p>
+              <p>Total: <span class="total-cost-span">$1500</span></p>
+              <div class="shipping-btn">
+                <button class="cancel-btn">Cancel</button>
+                <button class="prev-btn">Previous</button>
+                <input class="payment-btn" value="Payment" type="submit" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <!-- Footer-->
+    <footer id="footer"></footer>
+
+    <!-- custom js link-->
+    <!-- ionicon link -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script
+      src="https://kit.fontawesome.com/6e23c76e5a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./assets/js/script.js"></script>
+    <script type="module" src="./assets/js/shipping.js" defer></script>
+  </body>
+</html>

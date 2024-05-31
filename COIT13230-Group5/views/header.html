@@ -1,0 +1,178 @@
+<div class="header-main">
+  <div class="container">
+    <!-- 클라이언트 측 코드 (main.ejs 파일 내) -->
+    <a class="header-logo" id="main-link">
+      <img
+        src="/assets/images/logo/logo.png"
+        alt="logo"
+        width="90"
+        height="80"
+      />
+    </a>
+
+    <div class="header-search-container">
+      <input
+        type="search"
+        name="search"
+        class="search-field"
+        placeholder="Enter your Electronic product name !!"
+      />
+
+      <button class="search-btn">
+        <ion-icon name="search-outline"></ion-icon>
+      </button>
+    </div>
+
+    <div class="header-user-actions">
+      <a href="/loginPage" class="user-login">Login</a>
+
+      <a href="/signupPage" class="user-signup">Sign up</a>
+
+      <p class="user-name"></p>
+
+      <a
+        class="action-btn user-profile"
+        type="button"
+        href="/updateProfilePage"
+      >
+        <ion-icon name="person-outline"></ion-icon>
+      </a>
+
+      <a class="action-btn user-cart" type="button" href="cart.html">
+        <ion-icon name="bag-handle-outline"></ion-icon>
+        <span class="count">0</span>
+      </a>
+
+      <a href="/logout" class="user-logout">Logout</a>
+    </div>
+  </div>
+
+  <!-- <script src="./assets/js/login.js"></script> -->
+  <script>
+    const mainLink = document.getElementById('main-link');
+    mainLink.href = '/main';
+
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+      $('.user-name').show();
+      $('.user-name').text(userName);
+      $('.user-login').hide();
+      $('.user-signup').hide();
+      $('.user-profile').show();
+      $('.user-logout').show();
+      $('.user-cart').show();
+    } else {
+      $('.user-name').text('');
+      $('.user-name').hide();
+      $('.user-profile').hide();
+      $('.user-logout').hide();
+      $('.user-login').show();
+      $('.user-signup').show();
+    }
+
+    // log out
+    $('.user-logout').click(function () {
+      $.ajax({
+        url: '/user/logout',
+        method: 'POST',
+        success: function (response) {
+          console.log(response);
+          if (response.statusCode === 200) {
+            /**/
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('products');
+            localStorage.removeItem('cartData');
+            localStorage.removeItem('currentUser');
+            document.cookie = '';
+            window.location.href = '/main';
+          } else {
+            console.error('Logout failed:', response.error);
+          }
+        },
+        error: function (error) {
+          console.error('AJAX error:', error);
+        },
+      });
+      window.location.href = '/main';
+    });
+
+    const cartCount = document.querySelector('.count');
+    const cartItems = JSON.parse(localStorage.getItem('products'));
+    cartCount.innerHTML = cartItems ? cartItems.length : 0;
+
+    /*Search functionality*/
+    const searchBtn = document.querySelector('.search-btn');
+    const searchField = document.querySelector('.search-field');
+
+    searchBtn.addEventListener('click', searchProducts);
+    searchField.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        searchProducts();
+      }
+    });
+
+    function searchProducts() {
+      const searchQuery = searchField.value.toLowerCase();
+      $.ajax({
+        url: '/product',
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          const products = data.data.filter((p) => {
+            return (
+              p.name.toLowerCase().includes(searchQuery) ||
+              p.category.toLowerCase().includes(searchQuery)
+            );
+          });
+          displayProducts(products);
+          scrollToProducts();
+        },
+        error: function (xhr, status, error) {
+          console.error('AJAX error:', error);
+        },
+      });
+    }
+
+    function displayProducts(products) {
+      const productGrid = document.querySelector('.product-grid');
+      if (productGrid) {
+        productGrid.innerHTML = '';
+        products.forEach((p) => {
+          let showcase = `<div class="showcase">
+            <div class="showcase-banner">
+              <img src="${p.image}" alt="Product Image" class="product-img default" width="300" />
+              <img src="${p.image}" alt="Product Image" class="product-img hover" width="300" />
+              <div class="showcase-actions"></div>
+            </div>
+            <div class="showcase-content">
+              <a href="/product/${p._id}" class="showcase-category">${p.name}</a>
+              <h3><a href="/product/${p._id}" class="showcase-title">${p.name}</a></h3>
+              <div class="showcase-rating">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+              </div>
+              <div class="price-box">
+                <p class="price">$${p.price}</p>
+                <del>$56.00</del>
+              </div>
+            </div>
+          </div>`;
+          productGrid.innerHTML += showcase;
+        });
+      } else {
+        console.error('.product-grid element not found');
+      }
+    }
+
+    function scrollToProducts() {
+      const productSection = document.querySelector('.product-grid');
+      if (productSection) {
+        productSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
+</div>

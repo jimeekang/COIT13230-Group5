@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="./assets/css/admin-styles.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Admin Dashboard</h2>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#addProduct">Add Product</a></li>
+        <li><a href="#products">Product List</a></li>
+        <li><a href="#reviews">Review List</a></li>
+        <li><a href="#orders">Order List</a></li>
+        <li><a href="/logout" id="logout">Logout</a></li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <header>
+        <h1>Welcome, Admin</h1>
+      </header>
+
+      <section id="home">
+        <h2 class="home-title">Dashboard Overview</h2>
+        <div class="dashboard-cards">
+          <div class="card">
+            <div class="card-icon">
+              <ion-icon name="cart-outline"></ion-icon>
+            </div>
+            <div class="card-content">
+              <h3>Total Orders</h3>
+              <p class="total-orders"></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <ion-icon name="people-outline"></ion-icon>
+            </div>
+            <div class="card-content">
+              <h3>New Users</h3>
+              <p class="total-users"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-cards-under">
+          <div class="card">
+            <div class="card-icon">
+              <ion-icon name="star-outline"></ion-icon>
+            </div>
+            <div class="card-content">
+              <h3>Total Reviews</h3>
+              <p class="total-reviews"></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <ion-icon name="cash-outline"></ion-icon>
+            </div>
+            <div class="card-content">
+              <h3>Total Product</h3>
+              <p class="total-products"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="addProduct" class="hidden">
+        <h2>Add product</h2>
+        <form
+          action="/product/add"
+          method="POST"
+          id="add-product-form"
+          enctype="multipart/form-data"
+          onsubmit="handleSubmit(event)"
+        >
+          <div class="form-left">
+            <div class="form-group">
+              <label for="name">Product Name:</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="price">Price:</label>
+              <input type="number" id="price" name="price" required />
+            </div>
+
+            <div class="form-group">
+              <label for="brand">Brand:</label>
+              <input type="text" id="brand" name="brand" required />
+            </div>
+
+            <div class="form-group">
+              <label for="add-category">Category:</label>
+              <select id="add-category" name="category" required>
+                <option value="Mobile">Mobile</option>
+                <option value="TV">TV</option>
+                <option value="Tablet">Tablet</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Wearable">Wearable</option>
+                <option value="Camera">Camera</option>
+                <option value="Accessories">Accessories</option>
+              </select>
+            </div>
+
+            <p>specifications</p>
+            <div class="form-group">
+              <label for="display">display:</label>
+              <input type="text" id="display" name="display" required />
+            </div>
+            <div class="form-group">
+              <label for="processor">processor:</label>
+              <input type="text" id="processor" name="processor" required />
+            </div>
+          </div>
+
+          <div class="form-right">
+            <div class="form-group">
+              <label for="ram">ram:</label>
+              <input type="text" id="ram" name="ram" required />
+            </div>
+            <div class="form-group">
+              <label for="storage">storage:</label>
+              <input type="text" id="storage" name="storage" required />
+            </div>
+            <div class="form-group">
+              <label for="graphics">graphics:</label>
+              <input
+                type="text"
+                type="text"
+                id="graphics"
+                name="graphics"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="battery">battery:</label>
+              <input type="text" id="battery" name="battery" required />
+            </div>
+
+            <div class="form-group">
+              <label for="image">Image:</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                required
+                accept="image/*"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="stock">Stock Quantity:</label>
+              <input type="number" id="stock" name="stock" required />
+            </div>
+            <div class="form-group">
+              <label for="tag">Tag:</label>
+              <input type="text" id="tag" name="tag" required />
+            </div>
+            <div class="form-btn">
+              <button type="submit">Save</button>
+              <button id="cancel-addProduct-btn" type="button">Cancel</button>
+            </div>
+          </div>
+        </form>
+        <div id="success-msg-addProduct" class="success-msg hidden">
+          <!-- Tick mark icon -->
+          <span class="message-text-addProduct"></span>
+        </div>
+      </section>
+
+      <!-- Product List -->
+      <section id="products" class="hidden">
+        <h2>Product List</h2>
+        <div class="filters">
+          <label for="filter-category">Category:</label>
+          <select id="filter-category">
+            <option value="">All</option>
+            <option value="Mobile">Mobile</option>
+            <option value="TV">TV</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Wearable">Wearable</option>
+            <option value="Camera">Camera</option>
+            <option value="Accessories">Accessories</option>
+          </select>
+
+          <label for="filter-brand">Brand:</label>
+          <select id="filter-brand">
+            <option value="">All</option>
+            <option value="Apple">Apple</option>
+            <option value="Samsung">Samsung</option>
+            <option value="LG">LG</option>
+            <option value="Huawei">Huawei</option>
+            <option value="Sony">Sony</option>
+            <option value="Lenovo">Lenovo</option>
+            <option value="Dell">Dell</option>
+            <option value="Logitech">Logitech</option>
+          </select>
+
+          <label for="sort-price">Sort by Price:</label>
+          <select id="sort-price">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+
+          <button id="product-filter-btn">Filter</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Num</th>
+              <th>Category</th>
+              <th>Brand</th>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Stock</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <!-- Edit Product -->
+      <section id="editProduct" class="hidden">
+        <h2>Edit product</h2>
+        <form id="edit-product-form" onsubmit="handleEditSubmit(event)">
+          <div class="form-left">
+            <div class="form-group">
+              <label for="name">Product Name:</label>
+              <input type="text" id="name" name="name" class="edit" required />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea
+                id="description"
+                name="description"
+                class="edit"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="price">Price:</label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                class="edit"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="brand">Brand:</label>
+              <input
+                type="text"
+                id="brand"
+                name="brand"
+                class="edit"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="add-category">Category:</label>
+              <select id="add-category" name="category" class="edit" required>
+                <option value="Mobile">Mobile</option>
+                <option value="TV">TV</option>
+                <option value="Tablet">Tablet</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Wearable">Wearable</option>
+                <option value="Camera">Camera</option>
+                <option value="Accessories">Accessories</option>
+              </select>
+            </div>
+
+            <p>specifications</p>
+            <div class="form-group">
+              <label for="display">Display:</label>
+              <input
+                type="text"
+                id="display"
+                name="display"
+                class="edit"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="processor">Processor:</label>
+              <input
+                type="text"
+                id="processor"
+                name="processor"
+                class="edit"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-right">
+            <div class="form-group">
+              <label for="ram">RAM:</label>
+              <input type="text" id="ram" name="ram" class="edit" required />
+            </div>
+            <div class="form-group">
+              <label for="storage">Storage:</label>
+              <input
+                type="text"
+                id="storage"
+                name="storage"
+                class="edit"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="graphics">Graphics:</label>
+              <input
+                type="text"
+                id="graphics"
+                name="graphics"
+                class="edit"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="battery">Battery:</label>
+              <input
+                type="text"
+                id="battery"
+                name="battery"
+                class="edit"
+                required
+              />
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="image">Image:</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                class="edit"
+                accept="image/*"
+              />
+            </div> -->
+
+            <div class="form-group">
+              <label for="stock">Stock Quantity:</label>
+              <input
+                type="number"
+                id="stock"
+                name="stock"
+                class="edit"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="tag">Tag:</label>
+              <input type="text" id="tag" name="tag" class="edit" required />
+            </div>
+            <div class="form-btn">
+              <button id="editSave-btn" type="submit">Save</button>
+              <button type="button" id="cancel-editProduct-btn">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Review List -->
+      <section id="reviews" class="hidden">
+        <h2>Review List</h2>
+        <div class="filters">
+          <label for="review-filter-star-rate">Star Rate:</label>
+          <select id="review-filter-star-rate">
+            <option value="">All</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+
+          <div>
+            <label for="review-date-filter">Date:</label>
+            <input type="date" id="review-date-filter" />
+          </div>
+          <button id="review-filter-btn">Filter</button>
+
+          <div>
+            <label for="review-email-filter">User Email:</label>
+            <input
+              type="text"
+              id="review-email-filter"
+              placeholder="Enter user email"
+            />
+          </div>
+          <button id="review-search-btn">Search User</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>User Number</th>
+              <th>Email</th>
+              <th>Product</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Star Rate</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <!-- Order List -->
+      <section id="orders" class="hidden">
+        <h2>Order List</h2>
+        <div class="filters">
+          <div>
+            <label for="order-email-filter">User Email:</label>
+            <input
+              type="text"
+              id="order-email-filter"
+              placeholder="Enter user email"
+            />
+          </div>
+          <div>
+            <label for="order-date-filter">Date:</label>
+            <input type="date" id="order-date-filter" />
+          </div>
+          <button id="order-filter-btn">Filter</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Order Number</th>
+              <th>User Email</th>
+              <th>Order Products</th>
+              <th>Total Price</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="order-list-body"></tbody>
+        </table>
+      </section>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script src="/assets/js/admin.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      document
+        .querySelector('#cancel-addProduct-btn')
+        .addEventListener('click', () => {
+          window.location.href = '/admin';
+        });
+
+      document
+        .querySelector('#cancel-editProduct-btn')
+        .addEventListener('click', () => {
+          window.location.href = '/admin';
+        });
+    </script>
+  </body>
+</html>
